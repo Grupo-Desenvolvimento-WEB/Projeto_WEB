@@ -1,0 +1,73 @@
+header{
+    background-color: #fad014;
+}
+
+.nav-link:hover{
+    transition: 0.2s;
+    scale: 1.1;
+}
+
+.dropdown-item:hover{
+    background-color: #fad014;
+    color: #ffffff;
+}
+
+.form-control{
+    border-color: #d2d2d2;
+}
+.form-control:focus {
+    border-color: #d2d2d2;
+    outline: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+}
+
+
+.carousel{
+    height: 80vh;
+    width: 90vw;
+    
+}
+
+.carousel-item{
+    height: 80vh;
+    width: 90vw;
+}
+
+h1{
+    display: inline-block;
+    width: 40%;
+    margin-left: 8%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: initial;
+
+    margin-bottom: 3em;
+    margin-top: 5em;
+
+}   
+
+.card{
+    display: inline-block;
+    margin-left: 5em;
+}
+
+#cardUm{
+    margin-left: 50.9em;
+    margin-bottom: 3em;
+}
+
+#um{
+    margin-left: 8em;
+}
+.card:hover{
+    scale: 1.1;
+    transition: 0.2s;
+}
+
+#Melhorviagem{
+    margin-left: .5em;
+}
+
+.icon{
+    scale: 0.8;
+}
