@@ -1,4 +1,4 @@
-alert("ainda ta feio ainda, paciencia")
+// provavel exclusão de conteúdo
 
 var radio = document.querySelector('.manual-btn')
 var cont = 1
