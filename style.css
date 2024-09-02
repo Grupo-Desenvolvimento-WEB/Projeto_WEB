@@ -1,0 +1,206 @@
+/* Pc */
+@media all{
+    /* Fonte Questrial */
+    .questrial-regular {
+        font-family: "Questrial", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+    }
+
+    /* Estilos do Header */
+    header {
+        height: auto;
+        width: auto;
+        background: linear-gradient(to left, #fad014, #f6cb0a);
+    }
+
+    .imageBrand {
+        transform: scale(1);
+        border-radius: 100%;
+    }
+
+    .nav-link:hover {
+        transition: 0.2s;
+        transform: scale(1.1);
+    }
+
+    .dropdown-item:hover {
+        background-color: #fad014;
+        color: #ffffff;
+    }
+
+    /* Estilos do Formulário de Pesquisa */
+    .form-control {
+        border-color: #d2d2d2;
+    }
+
+    .form-control:focus {
+        border-color: #d2d2d2;
+        outline: 0;
+        box-shadow: none;
+    }
+
+    /* Estilos do Main */
+    main {
+        width: 70vw;
+        margin: auto;
+        height: auto;
+    }
+
+    /* Estilos do Título */
+    h1 {
+        display: inline-block;
+        font-size: 2.7em;
+        width: 40%;
+        text-align: initial;
+    }
+
+    /* Estilos do Carousel */
+    .carousel-caption > h5, 
+    .carousel-caption > p {
+        font-family: "Questrial", sans-serif;
+        font-weight: bolder;
+        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Grid Customizado */
+    .my-grid1, .my-grid2 {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        align-items: center;
+        justify-items: end;
+        margin-right: 100px;
+        padding: 0;
+    }
+
+    /* Seção à Direita do Grid */
+    .right {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 9.5em;
+        margin: 0;
+        padding: 0;
+        margin-right: 0.1em;
+    }
+
+    /* Títulos da Seção à Esquerda */
+    .left h2, .left2 h2 {
+        font-family: "Questrial", sans-serif;
+        font-size: 35pt;
+        font-weight: bolder;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .left2 h2 {
+        margin-left: 3.1em;
+    }
+
+    /* Estilos dos Cards */
+    .card {
+        width: 100%;
+        padding: 0;
+        overflow: hidden;
+        box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+        transition: border 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: 100%;
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover .card-img-top {
+        transform: scale(1.1);
+    }
+
+    .card:hover {
+        border: 2px solid rgb(0, 153, 255);
+        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* Phone */
+@media (min-width: 319px) and (max-width: 480px) {
+    /* Estilos do Título */
+
+    header{
+        margin-top: -4em;
+    }
+    h1 {
+        display: inline-block;
+        font-size: 2.7em;
+        width: 40%;
+        text-align: initial;
+    }
+
+    .imageBrand{
+        visibility: hidden;
+    }
+
+    main{
+        margin-top: -10em;
+    }
+
+    .nav-link{
+        transform: scale(.9);
+    }
+    
+    /* Estilos do Carousel */
+    #carouselExampleSlidesOnly {
+        visibility: hidden;
+        overflow: hidden;
+    }
+
+    /* Grid Customizado */
+    .my-grid1, .my-grid2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-items: center;
+        margin: auto;
+        padding: 0px;
+    }
+
+    .my-grid1{
+        display: flex;
+        flex-direction: column-reverse;
+        margin: auto;
+    }
+
+    /* Seção à Direita do Grid */
+    .right {
+        display: block;
+        margin: auto;
+        padding: 0px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Títulos da Seção à Esquerda */
+    .left h2, .left2 h2 {
+        text-align: center;
+        font-family: "Questrial", sans-serif;
+        font-size: 20pt;
+        font-weight: normal;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .left2 {
+        margin-left: -4em;
+    }
+
+    .space{
+        margin-top: 10em;
+    }
+
+    /* Estilos dos Cards */
+    .card {
+        width: 100%;
+        margin: auto;
+        overflow: hidden;
+        box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+        transition: border 0.2s ease, box-shadow 0.3s ease;
+        transform: scale(.8);
+    }
+}

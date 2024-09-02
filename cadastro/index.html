@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro / Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <h1>Crie sua Conta</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"><img src="./facebook (1).png" alt=""></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"><img src="./google-plus.png" alt=""></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"><img src="./linkedin.png" alt=""></i></a>
+                </div>
+                <span>ou use sua conta para registrar</span>
+                <input type="text" placeholder="Nome" />
+                <input type="email" placeholder="Email" />
+                <input type="password" placeholder="Senha" />
+                <button>Criar Conta</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1>Realize seu Login</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"><img src="./facebook (1).png" alt=""></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"><img src="./google-plus.png" alt=""></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"><img src="./linkedin.png" alt=""></i></a>
+                </div>
+                <span>ou use sua conta</span>
+                <input type="email" placeholder="Email" />
+                <input type="password" placeholder="Senha" />
+                <a href="#">Esqueceu sua senha?</a>
+                <button>Login</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Bem-vindo novamente!</h1>
+                    <p>Para manter-se conectado conosco, por favor, faça login com suas informações pessoais.</p>
+                    <button class="ghost" id="signIn">Faça seu Login</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Olá, amigo!</h1>
+                    <p>Coloque seus dados e inicie sua jornada conosco!</p>
+                    <button class="ghost" id="signUp">Criar conta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>

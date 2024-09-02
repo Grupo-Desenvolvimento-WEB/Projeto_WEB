@@ -1,226 +1,201 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HomePage</title>
-  <link rel="shortcut icon" href="Imagens/imagens_index/favcon.png" type="image/x-icon">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="homepage/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+    </style>
 </head>
-
 <body>
-  <header class="p-3 mb-5 border-bottom">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-          <img src="Imagens/imagens_index/1.png" alt="Logo" width="80" height="64"
-            style="transform: scale(1); border-radius: 100%;">
-        </a>
+    <!-- Header -->
+    <header class="p-3 mb-5 border-bottom">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+                    <img class="imageBrand" src="logo.jpg" alt="Logo" width="80" height="64">
+                </a>
 
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 link-secondary">Homepage</a></li>
-          <li><a href="#" class="nav-link px-2 link-body-emphasis">Passagens</a></li>
-          <li><a href="#" class="nav-link px-2 link-body-emphasis">Hospedagens</a></li>
-          <li><a href="#" class="nav-link px-2 link-body-emphasis">Promoções</a></li>
-        </ul>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" class="nav-link px-2 link-secondary">Homepage</a></li>
+                    <li><a href="#" class="nav-link px-2 link-body-emphasis">Passagens</a></li>
+                    <li><a href="#" class="nav-link px-2 link-body-emphasis">Hospedagens</a></li>
+                    <li><a href="#" class="nav-link px-2 link-body-emphasis">Promoções</a></li>
+                </ul>
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control" placeholder="Pesquisar" aria-label="Search">
-        </form>
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <input type="search" class="form-control" placeholder="Pesquisar" aria-label="Search">
+                </form>
 
-        <div class="dropdown text-end">
-          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            <img src="Imagens/imagens_index/2.png" alt="mdo" width="32" height="32" class="rounded-circle">
-          </a>
-          <ul class="dropdown-menu text-small">
-            <li><a class="dropdown-item" href="#">Perfil</a></li>
-            <li><a class="dropdown-item" href="#">Configurações</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="#">Deslogar</a></li>
-          </ul>
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="imagens/irlanda.png   " alt="mdo" width="32" height="32" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu text-small">
+                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="#">Configurações</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Deslogar</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </header>
+    </header>
 
-  <div id="carouselExampleCaptions" class="carousel slide container mb-5">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-        aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-        aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-        aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="Imagens/bonito-ms.jpg" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Relaxe e Curta!</h5>
-          <p>Conheça os melhores lugares paradisíacos</p>
+    <!-- Main Content -->
+    <main>
+        <!-- Carousel -->
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="5000">
+                    <img src="imagens/gramado.png" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Conheça a europa brasileira</h5>
+                        <p>Visite os pontos turíscos da famosa cidade europeia brasileira</p>
+                    </div>
+                </div>
+
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="imagens/praia.png" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Relaxe nas praias do Rio de Janeiro</h5>
+                        <p>Explore as praias com águas imperdíveis</p>
+                    </div>
+                </div>
+
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="imagens/trem.png" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Experimente andar de trem</h5>
+                        <p>Desfrute de várias paisagens e emoções pelo caminho</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="carousel-item">
-        <img src="Imagens/gramado.jpg" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>A Europa no Brasil</h5>
-          <p>Conheça um pedaço da europa no nosso querido Brasil</p>
+
+        <!-- Promotions Section -->
+        <div class="container my-grid2 mt-4">
+            <div class="left">
+                <h2>Aproveite nossas promoções!</h2>
+            </div>
+            <div class="right">
+                <div class="card mb-5" style="width: 16rem;">
+                    <img src="imagens/Rio de Janeiro.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Rio de Janeiro</h5>
+                        <p class="card-text">Visite uma das 7 maravilhas do mundo</p>
+                        <a href="#" class="btn btn-warning">Veja os preços</a>
+                    </div>
+                </div>
+
+                <div class="card mb-5" style="width: 16rem;">
+                    <img src="imagens/Maragogi .png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Maceió</h5>
+                        <p class="card-text">Conheça o famoso Maragogi e suas belas praias</p>
+                        <a href="#" class="btn btn-warning">Veja os preços</a>
+                    </div>
+                </div>
+
+                <div class="card mb-5" style="width: 16rem;">
+                    <img src="imagens/Rio Grande.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Gramado</h5>
+                        <p class="card-text">Sinta-se na Europa aqui no Brasil</p>
+                        <a href="#" class="btn btn-warning">Veja os preços</a>
+                    </div>
+                </div>
+
+                <div class="card mb-5" style="width: 16rem;">
+                    <img src="imagens/Porto.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Porto Seguro</h5>
+                        <p class="card-text">Aproveite as festas e a cultura nordestina</p>
+                        <a href="#" class="btn btn-warning">Veja os preços</a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="carousel-item">
-        <img src="Imagens/lençois.jpg" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Uma das sete maravilhas do mundo está á sua espera</h5>
-          <p>Explore e se divirta aonde muitos sonham em estar</p>
+
+        <div class="container my-grid1 mt-4 card-container">
+            <div class="right">
+                <div class="card mb-5 space" style="width: 16rem;">
+                    <img src="imagens/japao.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Tokyo</h5>
+                        <p class="card-text">Desfrute de uma das culturas mais antigas que existem</p>
+                        <a href="#" class="btn btn-warning">Veja os preços</a>
+                    </div>
+                </div>
+
+                <div class="card mb-5" style="width: 16rem;">
+                    <img src="imagens/irlanda.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Irlanda</h5>
+                        <p class="card-text">Aprecie vistas impagáveis e locais históricos imperdíveis</p>
+                        <a href="#" class="btn btn-warning">Veja os preços</a>
+                    </div>
+                </div>
+
+                <div class="card mb-5" style="width: 16rem;">
+                    <img src="imagens/barcelona.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Barcelona</h5>
+                        <p class="card-text">Visite a capital catalã e conheça sua história</p>
+                        <a href="#" class="btn btn-warning">Veja os preços</a>
+                    </div>
+                </div>
+
+                <div class="card mb-5" style="width: 16rem;">
+                    <img src="imagens/paris.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Paris</h5>
+                        <p class="card-text">Desfrute da capital romântica com nosso pacote especial</p>
+                        <a href="#" class="btn btn-warning">Veja os preços</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="left2">
+                <h2>Seu próximo destino inesquecível espera por você!</h2>
+            </div>
         </div>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
 
-  <h1 class="">Algumas de nossas melhores promoções</h1>
-
-  <div class="card mb-5" style="width: 16rem;">
-    <img src="Imagens/imagens_index/rio_janeiro.jpeg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Rio de Janeiro</h5>
-      <p class="card-text">Visite um das 7 maravilhas do mundo</p>
-      <a href="#" class="btn btn-warning">Veja os preços</a>
-    </div>
-  </div>
-
-  <div class="card" style="width: 16rem;">
-    <img src="Imagens/imagens_index/sao_paulo.jpeg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">São Paulo</h5>
-      <p class="card-text">Conheça todos os pontos turísticos da maior cidade do Brasil</p>
-      <a href="#" class="btn btn-warning">Veja os preços</a>
-    </div>
-  </div>
-
-
-  <div class="card" id="cardUm" style="width: 16rem;">
-    <img src="Imagens/imagens_index/rio_grande.jpeg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Porto Alegre</h5>
-      <p class="card-text">Participe de eventos típicos dos gaúchos</p>
-      <a href="#" class="btn btn-warning">Veja os preços</a>
-    </div>
-  </div>
-
-
-  <div class="card mb-5" id="cardDois" style="width: 16rem;">
-    <img src="Imagens/imagens_index/santiago.jpeg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Santiago</h5>
-      <p class="card-text">Experimente a sensação única de explorar tudo da capital chilena com nossos guias</p>
-      <a href="#" class="btn btn-warning">Veja os preços</a>
-    </div>
-  </div>
-
-  <div class="card " id="um" style="width: 16rem;">
-    <img src="Imagens/imagens_index/barcelona.jpeg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Barcelona</h5>
-      <p class="card-text">Uma das cidades mais históricas e belas para se conhecer</p>
-      <a href="#" class="btn btn-warning">Veja os preços</a>
-    </div>
-  </div>
-
-  <div class="card" id="um" style="width: 16rem;">
-    <img src="Imagens/imagens_index/irlanda.jpeg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Irlanda</h5>
-      <p class="card-text">A vista que tira o ar de qualquer um</p>
-      <a href="#" class="btn btn-warning">Veja os preços</a>
-    </div>
-  </div>
-
-  <h1 id="Melhorviagem">As melhores viagens votadas por vocês</h1>
-
-
-  <div class="card" id="um" style="width: 16rem;">
-    <img src="Imagens/imagens_index/paris.jpeg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Paris</h5>
-      <p class="card-text">Perfeito para quem deseja passar um tempo á sós</p>
-      <a href="#" class="btn btn-warning">Veja os preços</a>
-    </div>
-  </div>
-
-  <div class="card" id="um" style="width: 16rem;">
-    <img src="Imagens/imagens_index/noruega.jpeg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Noruega</h5>
-      <p class="card-text">Auroras boreais são a melhor escolha</p>
-      <a href="#" class="btn btn-warning">Veja os preços</a>
-    </div>
-  </div>
-
-  <div class="container px-4 py-5 mt-5" id="featured-3">
-    <h2 class="pb-2 border-bottom">Porquê escolher a gente? </h2>
-    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-      <div class="feature col">
-        <div
-          class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-warning bg-gradient fs-2 mb-3"
-          style="scale: 2;">
-          <img class="icon" src="Imagens/imagens_index/shield-check.svg" alt="">
+        <!-- Why Choose Us Section -->
+        <div class="container px-4 py-5 mt-5" id="featured-3">
+            <h2 class="pb-2 border-bottom">Por que escolher a gente?</h2>
+            <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+                <div class="feature col">
+                  <h2>Preço acessível</h2>
+                  <p>Aproveite nossas melhores ofertas e promoções, sem pesar no bolso.</p>
+                </div>
+                <div class="feature col"> 
+                  <h2>Pacotes personalizados</h2>
+                  <p>Crie a viagem dos seus sonhos com nossos pacotes personalizados e flexíveis.</p>
+                </div>
+                <div class="feature col">
+                  <h2>Atendimento 24/7</h2>
+                  <p>Estamos disponíveis a qualquer hora para garantir uma viagem tranquila.</p>
+                </div>
+            </div>
         </div>
-        <h3 class="fs-2 text-body-emphasis">Segurança</h3>
-        <p>Temos parceria com mais de 2 mil hotéis e companhias áreas para trazer mais conforto e segurança para sua
-          estadia e voo</p>
-      </div>
-      <div class="feature col">
-        <div
-          class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-warning bg-gradient fs-2 mb-3"
-          style="scale: 2;">
-          <img class="icon" src="Imagens/imagens_index/hand-thumbs-up-fill.svg" alt="">
-        </div>
-        <h3 class="fs-2 text-body-emphasis">Confiança</h3>
-        <p>Atuamos no mercado a mais de 15 anos, tendo feito milhões de pessoas felizes e satisfeitas com nossos planos
-        </p>
-      </div>
-      <div class="feature col">
-        <div
-          class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-warning bg-gradient fs-2 mb-3"
-          style="scale: 2;">
-          <img class="icon" src="Imagens/imagens_index/gear-wide-connected.svg" alt="">
-        </div>
-        <h3 class="fs-2 text-body-emphasis">Inovação</h3>
-        <p>Com nossa equipe trabalhando 24 horas por dia para ver os melhores preços, trazemos uma melhoria jamais vista
-          em busca por preços</p>
+    </main>
 
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
+    <!-- Footer -->
     <footer class="py-3 my-4">
       <ul class="nav justify-content-center border-bottom pb-3 mb-3">
         <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Ferramentas</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pacotes</a></li>
         <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Sobre</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
       </ul>
-      <p class="text-center text-body-secondary">© 2024 LBV, Inc</p>
+      <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
     </footer>
-  </div>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script src="homepage/homepage.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-rbF7/ogpII6KtFAewvErDoTXFYdRUpq1cG5AYpA3KZtZK1p63E15rYMGKzBprLI+" crossorigin="anonymous">
+    </script>
+</body>
 </html>
