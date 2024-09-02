@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+body{
+    margin: 15px 20px 20px 15px;
+}
+p{
+    text-align: justify;
+}
+/* .oi{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-content: space-around;
+} */
+
+
+/* .carrossel{
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    width: 60%;
+}
+@keyframes slidein {
+
+}
+.carrossel:hover{
+    animation-name: slidein;
+    animation-direction:normal;
+    animation-duration: 2s;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+
+} */

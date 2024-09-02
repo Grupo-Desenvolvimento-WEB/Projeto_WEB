@@ -1,0 +1,229 @@
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  height: 100vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(paisagem.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  backface-visibility: hidden;
+  height: 100%;
+  min-height: 500px;
+  max-height: 1000px;
+  margin: 0;
+
+}
+
+
+p {
+  color: rgb(199, 0, 0);
+  font-size: 11px;
+  display: none;
+}
+
+.wrapper {
+  width: 651px;
+  height: 100%;
+  margin: 80px auto 0;
+}
+
+/* Estiliza o container */
+.container {
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  min-height: 50vh;
+  padding: 15px;
+  width: 90vw;
+  height: 500px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+/* Estiliza a parte do card-details */
+.part.card-details {
+  float: left;
+  width: 95%;
+  padding: 48px 60px 40px 60px;
+}
+
+
+
+.part.card-details h1 {
+  background-color: rgba(255, 145, 0, 0.8);
+  color: rgb(0, 0, 0);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-style: initial;
+  text-transform: uppercase;
+  padding: 14px 0 10px 49px;
+  letter-spacing: 1px;
+  margin-left: -72px;
+  width: 380px;
+}
+
+/* Estiliza o formulário */
+form {
+  font-family: 'Work Sans', sans-serif;
+}
+
+.group {
+  display: block;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+label {
+  font-size: 12px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  height: 40px;
+  font-size: 18px;
+  border: 0;
+  color: dark;
+  border-bottom: 1px solid grey;
+}
+
+input:focus {
+  outline: none;
+  border-bottom-color: blue;
+}
+
+/* Estiliza os campos de número do cartão */
+.card-number {
+  border-bottom: 1px solid grey;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  align-items: center;
+}
+
+.card-number input {
+  width: 295px;
+  border: 0;
+  position: static;
+
+}
+.card-number label{
+  width: 80px;
+}
+
+.card-logo {
+  
+  margin-left: 0;
+}
+
+.card-number.focused {
+  border-bottom-color: rgb(0, 0, 0);
+}
+
+/* Estiliza os campos de validade do cartão */
+.card-expiry {
+  border-bottom: 0;
+}
+
+.card-expiry .input-item {
+  float: left;
+}
+
+.input-item.expiry {
+  width: 200px;
+}
+
+.input-item.expiry input:last-of-type {
+  margin-left: 30px;
+}
+
+.input-item.csv {
+  width: 80px;
+  position: relative;
+}
+
+.input-item.csv a {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 15px;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+
+.input-item.csv a:hover {
+  color: dark;
+}
+
+.input-item label {
+  width: 100%;
+}
+
+.input-item input {
+  border-bottom: 1px solid grey;
+  padding-bottom: 8px;
+}
+
+.input-item input.month {
+  width: 60px;
+}
+
+.input-item input.year,
+.input-item input.csv {
+  width: 79px;
+}
+
+.input-item input:focus {
+  border-bottom: 1px solid blue;
+}
+
+/* Estiliza o grupo de submit */
+.submit-group {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+
+}
+
+.submit-group:hover {
+  width: 100%;
+  overflow: hidden;
+  transition: 0.8s linear;
+
+}
+
+.submit {
+  text-transform: uppercase;
+  border: none;
+  background-color: transparent;
+  font-size: 15px;
+  line-height: 21px;
+  letter-spacing: 1.4px;
+  text-align: center;
+  color: dark;
+  margin-left: 44px;
+  cursor: pointer;
+  padding: 5px 15px 15px 15px;
+
+}
+
+.submit:hover {
+  text-decoration: underline;
+  width: 100%;
+  border-radius: 5px;
+
+
+}
+
+.submit:focus {
+  outline: none;
+}
