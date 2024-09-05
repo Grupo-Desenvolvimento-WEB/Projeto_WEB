@@ -4,17 +4,17 @@
 let destinos = [
     {
     titulo: "Barramas",
-    imagem: "../barramas.jpg",
+    imagem: "barramas.jpg",
     descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacinia dignissim nulla, eget volutpatn sapien suscipit euismod."
 }, 
 {
     titulo: "Rio de Janeiro",
-    imagem: "../",
+    imagem: "", //not working
     descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacinia dignissim nulla, eget volutpatn sapien suscipit euismod."
 }, 
 {
     titulo: "Maceió",
-    imagem: "../",
+    imagem: "barramas3.jpg",
     descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacinia dignissim nulla, eget volutpatn sapien suscipit euismod."
 }, 
 {
@@ -48,12 +48,12 @@ let destinos = [
     descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacinia dignissim nulla, eget volutpatn sapien suscipit euismod."
 }];
 
-// Função para criar um elemento <img> e adicioná-lo ao DOM
-function exibirImagem(destinos) {
-    let imagem = document.createElement('img');
-    imagem.src = destinos.imagem;
-    document.body.appendChild(imagem);
-}
+// // Função para criar um elemento <img> e adicioná-lo ao DOM
+// function exibirImagem(destinos) {
+//     let imagem = document.createElement('img');
+//     imagem.src = destinos.imagem;
+//     document.body.appendChild(imagem);
+// }
 
-// Chamando a função para exibir a imagem
-exibirImagem(destinos[0]);
+// // Chamando a função para exibir a imagem
+// exibirImagem(destinos[0]);
