@@ -9,7 +9,12 @@ body{
 p{
     text-align: justify;
 }
-/* .oi{
+.pesquisa{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/* .descricao{
     display: flex;
     flex-direction: row;
     width: 100%;
