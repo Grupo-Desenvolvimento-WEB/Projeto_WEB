@@ -32,31 +32,11 @@ document.getElementById('first').addEventListener('input', function () {
 
 });
 
+
 document.getElementById('name').addEventListener('input', function (e) {
     this.value = this.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '');  //Input Name só aceita letras
     this.value = this.value.toUpperCase(); 
 });
 
 
-// const card = document.getElementById('first'); 
-// const name = document.getElementById('name');
-// const month = document.getElementById('month');
-// const year = document.getElementById('year');
-// const csv = document.getElementById('csv');
 
-const form = document.querySelector('form')
-const input = document.getElementsByTagName('input');
-
-
-
-form.addEventListener("submit", async (e) => {
-    if (!card.value === "") {
-        alert("todos os campos são obrigatórios")
-    }
-    //bloqueia a atualiação da página html
-    e.preventDefalt();
-
-
-    console.log("oi");
-    alert("oi")
-})

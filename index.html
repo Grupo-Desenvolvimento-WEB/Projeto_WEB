@@ -27,9 +27,10 @@
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                    <input type="search" class="form-control" placeholder="Pesquisar" aria-label="Search">
+                    <input type="text" class="form-control" placeholder="Pesquisar" aria-label="Search" id="pesquisa" onkeydown="pesquisar()">
+                    
                 </form>
-
+                <section class="resultado-pesquisa" id="resultado-pesquisa"></section>
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="imagens/irlanda.png   " alt="mdo" width="32" height="32" class="rounded-circle">
@@ -197,5 +198,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-rbF7/ogpII6KtFAewvErDoTXFYdRUpq1cG5AYpA3KZtZK1p63E15rYMGKzBprLI+" crossorigin="anonymous">
     </script>
+    <script src="./Page Teste/dados.js"></script>
+    <script src="./Page Teste/page.js"></script>
 </body>
 </html>

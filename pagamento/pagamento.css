@@ -1,11 +1,9 @@
 * {
   box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
 
 body {
+  font-family: 'Montserrat', sans-serif;
   height: 100vh; 
   display: flex;
   justify-content: center;
@@ -59,7 +57,7 @@ p {
   background-color: rgba(255, 145, 0, 0.8);
   color: rgb(0, 0, 0);
   font-family: 'Montserrat', sans-serif;
-  font-size: 15px;
+  font-size: 18px;
   font-style: initial;
   text-transform: uppercase;
   padding: 14px 0 10px 49px;
@@ -97,6 +95,11 @@ input {
 input:focus {
   outline: none;
   border-bottom-color: blue;
+}
+
+
+img[alt] {
+  display: block; /* Mostra a imagem se o atributo alt estiver presente */
 }
 
 /* Estiliza os campos de número do cartão */
