@@ -1,34 +1,67 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro / Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
+            <script>
+                const salvar = async () => {
+                    console.log('entrou no salvar');
+
+                    var nome = document.getElementById('nome').value;
+                    var email = document.getElementById('email').value;
+                    var senha = document.getElementById('senha').value;
+
+                    var data = {
+                        nome: nome,
+                        senha: senha,
+                        email: email
+                    };
+
+                    console.log(JSON.stringify(data));
+                    const response = await fetch(`http://localhost:3000/api/usuario`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(data),
+                    });
+                    const result = await response.json();
+                    console.log(result);
+                }
+            </script>
+
             <form action="#">
                 <h1>Crie sua Conta</h1>
                 <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"><img src="./facebook (1).png" alt=""></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"><img src="./google-plus.png" alt=""></i></a>
+                    <a href="#" class="social"><i class="fab fa-facebook-f"><img src="./facebook (1).png"
+                                alt=""></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"><img src="./google-plus.png"
+                                alt=""></i></a>
                     <a href="#" class="social"><i class="fab fa-linkedin-in"><img src="./linkedin.png" alt=""></i></a>
                 </div>
                 <span>ou use sua conta para registrar</span>
-                <input type="text" placeholder="Nome" />
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Senha" />
-                <button>Criar Conta</button>
+                <input id="nome" type="text" placeholder="Nome" />
+                <input id="email" type="email" placeholder="Email" />
+                <input id="senha" type="password" placeholder="Senha" />
+                <button onclick="salvar()" type="button">Criar Conta</button>
             </form>
         </div>
         <div class="form-container sign-in-container">
             <form action="#">
                 <h1>Realize seu Login</h1>
                 <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"><img src="./facebook (1).png" alt=""></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"><img src="./google-plus.png" alt=""></i></a>
+                    <a href="#" class="social"><i class="fab fa-facebook-f"><img src="./facebook (1).png"
+                                alt=""></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"><img src="./google-plus.png"
+                                alt=""></i></a>
                     <a href="#" class="social"><i class="fab fa-linkedin-in"><img src="./linkedin.png" alt=""></i></a>
                 </div>
                 <span>ou use sua conta</span>
@@ -55,4 +88,5 @@
     </div>
     <script src="scripts.js"></script>
 </body>
+
 </html>
