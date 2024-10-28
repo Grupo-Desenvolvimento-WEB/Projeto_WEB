@@ -1,0 +1,27 @@
+{
+  "name": "projeto_web",
+  "version": "1.0.0",
+  "description": "Zé turismo - agencia de viagens",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Grupo-Desenvolvimento-WEB/Projeto_WEB.git"
+  },
+  "author": "Bruna, Lucas A., Vinicius",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Grupo-Desenvolvimento-WEB/Projeto_WEB/issues"
+  },
+  "homepage": "https://github.com/Grupo-Desenvolvimento-WEB/Projeto_WEB#readme",
+  "dependencies": {
+    "express": "^4.21.1",
+    "mysql2": "^3.11.3",
+    "sequelize": "^6.37.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}

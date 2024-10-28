@@ -13,7 +13,7 @@ function validarFormulario() {
     const nome = document.getElementById('name').value;
     if (nome === '') {
         document.getElementById('name').style = 'border: 2px solid #ff0000;';
-        alert('hey, you have to fill something buddy.');
+        alert('Todos os campos são obrigatórios!');
         return false;
     }
 
