@@ -1,22 +1,23 @@
+//Armazenando os dados da área de pagamento
 const card = document.getElementById('first').value; 
 const name = document.getElementById('name').value;
 const month = document.getElementById('month').value;
 const year = document.getElementById('year').value;
 const csv = document.getElementById('csv').value;
-
 const form = document.querySelector('form')
 const input = document.getElementsByTagName('input');
 
 function validarFormulario() {
-    //document.getElementById('nome').value = 'Prof. Cleverson';
-    const nome = document.getElementById('nome').value;
+    e.preventDefault();
+    document.getElementById('name').value;
+    const nome = document.getElementById('name').value;
     if (nome === '') {
-        document.getElementById('nome').style = 'border: 2px solid #ff0000;';
+        document.getElementById('name').style = 'border: 2px solid #ff0000;';
         alert('hey, you have to fill something buddy.');
         return false;
     }
 
-    console.log(nome);
+    console.log(name);
     console.log("chamou validarFormulario");
     return true;
 }
@@ -26,10 +27,16 @@ form.addEventListener("submit", async (e) => {
         alert("todos os campos são obrigatórios")
     }
     //bloqueia a atualiação da página html
-    e.preventDefalt();
+    e.preventDefault();
 
 
     console.log("oi");
     alert("oi")
     
 })
+
+//Api json teste
+
+var express = require('express');
+var app = express();
+app.use(express.json());

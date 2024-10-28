@@ -19,6 +19,13 @@ body {
   margin: 0;
 
 }
+/* Estilo para celulares (largura menor que 480px) */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+    background-color: lightgreen;
+  }
+}
 
 
 p {
@@ -36,7 +43,8 @@ p {
 /* Estiliza o container */
 .container {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-  min-height: 50vh;
+  min-height: 50%;
+  max-width: 90%;
   padding: 15px;
   width: 90vw;
   height: 500px;
@@ -48,10 +56,11 @@ p {
 .part.card-details {
   float: left;
   width: 95%;
+  min-width: 50%;
+  max-width: 85%;
   padding: 48px 60px 40px 60px;
+
 }
-
-
 
 .part.card-details h1 {
   background-color: rgba(255, 145, 0, 0.8);
@@ -69,6 +78,7 @@ p {
 /* Estiliza o formulário */
 form {
   font-family: 'Work Sans', sans-serif;
+  
 }
 
 .group {

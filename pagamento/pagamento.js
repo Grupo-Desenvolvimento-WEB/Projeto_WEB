@@ -1,4 +1,3 @@
-
 //DESCOBRIR A BANDEIRA DO CARTÃO
 document.getElementById('first').addEventListener('input', function (e) {
     this.value = this.value.replace(/\D/g, '');   // Input Card só aceita números

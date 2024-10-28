@@ -17,6 +17,7 @@ function pesquisar() {
     let titulo = "";
     let descricao = "";
     let tags = "";
+    let preco = "";
 
     //Interage com a lista de objetos do arquivo dados.js
     for (let destino of destinos) {
@@ -25,29 +26,22 @@ function pesquisar() {
         tags = destino.tags.toLowerCase()
         //Se houver um objeto condizente com o input de pesquisa, ele cria o objeto e mostra na página html
         if (titulo.includes(campoPesquisa) || descricao.includes(campoPesquisa) || tags.includes(campoPesquisa) ) {
-            resultado += `
-            <h1>${destino.titulo}</h1>
-            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="d-block w-100" src=${destino.imagem} alt="Imagem-destino">
-            </div></div>
+            resultado += `<div class="sessao">
+            <h2>${destino.titulo}</h2><br>
+            <div class="image">
+                <img class="img" src=Images/${destino.imagem} alt="Imagem-destino">
+            </div>
             <br>
             <div class="descricao">
             <p>${destino.descricao}</p>
-            </div> `
-
-            
+            </div> <br>
+            </div>`   
         }
-
     }
-
     if (!resultado){
-        resultado = "<p>Nenhum resultado encontrado!</p>"
+        resultado = "<p>Nenhum resultado correspondente à pesquisa foi encontrado!</p>"
     }
 
     section.innerHTML = resultado //Substitui elementos no arquivo html
 
 }
-
-
