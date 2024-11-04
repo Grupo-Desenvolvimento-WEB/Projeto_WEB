@@ -9,7 +9,7 @@ const mysql = require('mysql2');
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "Root#963", //Alterar a senha conforme a máquina que está rodando o programa
+    password: "PUC@1234", //Alterar a senha conforme a máquina que está rodando o programa
     database: "Projeto_Web"
 });
 

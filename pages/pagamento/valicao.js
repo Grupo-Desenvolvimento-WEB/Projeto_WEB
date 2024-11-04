@@ -7,6 +7,27 @@ const csv = document.getElementById('csv').value;
 const form = document.querySelector('form')
 const input = document.getElementsByTagName('input');
 
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('form');
+    
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        
+        let valid = true;
+
+        if (month < 1 || month > 12) {
+            alert("Valor 'Mês' incorreto!");
+            valid = false;
+        }
+        
+        if (year < getFullYear()) {
+            alert("Por favor, insira um email válido.");
+            valid = false;
+        }
+    
+    })})
+
+
 function validarFormulario() {
     e.preventDefault();
     document.getElementById('name').value;
@@ -22,21 +43,4 @@ function validarFormulario() {
     return true;
 }
 
-form.addEventListener("submit", async (e) => {
-    if (card.value === "") {
-        alert("todos os campos são obrigatórios")
-    }
-    //bloqueia a atualiação da página html
-    e.preventDefault();
 
-
-    console.log("oi");
-    alert("oi")
-    
-})
-
-//Api json teste
-
-var express = require('express');
-var app = express();
-app.use(express.json());

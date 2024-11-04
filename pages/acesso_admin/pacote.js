@@ -1,3 +1,8 @@
+
+document.getElementById('preco').addEventListener('input', function (e) {
+    this.value = this.value.replace(/\D/g, '');   // Input Card só aceita números
+});
+
 const pacotes = []
 
 const salvar = async () => {
@@ -59,7 +64,7 @@ function updateTable() {
         console.log(result);
 
         const tabelaPacotes = document.getElementById('pacotes');
-        result.forEach((usuario, index) => {                
+        result.forEach((pacote, index) => {                
             var row = tabelaPacotes.insertRow(index + 1);
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);

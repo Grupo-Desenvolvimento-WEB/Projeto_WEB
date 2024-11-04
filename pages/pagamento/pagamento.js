@@ -37,5 +37,21 @@ document.getElementById('name').addEventListener('input', function (e) {
     this.value = this.value.toUpperCase(); 
 });
 
+document.getElementById('expiry').addEventListener('input', function (e) {
+    this.value = this.value.replace(/\D/g, '');   // Input Card só aceita números
+});
+
+document.getElementById('ano').addEventListener('input', function (e) {
+    this.value = this.value.replace(/\D/g, '');   // Input Card só aceita números
+});
+
+document.getElementById('csv').addEventListener('input', function (e) {
+    this.value = this.value.replace(/\D/g, '');   // Input Card só aceita números
+});
+
+
+function finalizarCompra(){
+    //adicionar o valor compra para o o histórico
+}
 
 
