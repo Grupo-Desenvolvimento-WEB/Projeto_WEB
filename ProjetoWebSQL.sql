@@ -1,4 +1,4 @@
-CREATE DATABASE Projeto_Web;
+Create DATABASE Projeto_Web;
 USE Projeto_Web;
 
 CREATE TABLE Usuario (
@@ -13,6 +13,7 @@ CREATE TABLE Pacote (
     Titulo VARCHAR(100) NOT NULL,
     Descricao VARCHAR(100),
     Preco FLOAT NOT NULL
+    Num_Compras INT
 );
 
 CREATE TABLE Compra (
@@ -37,6 +38,33 @@ ALTER TABLE Compra ADD CONSTRAINT FK_Compra_2
     
 SELECT * FROM USUARIO;
 SELECT * FROM PACOTE;
+
+DROP TRIGGER IF EXISTS Tgr_Compra_Insert;
+DELIMITER $$
+CREATE TRIGGER Tgr_Compra_Insert
+AFTER INSERT -- A Trigger dispara após o INSERT
+ON Compra
+FOR EACH ROW
+BEGIN
+UPDATE Pacote
+SET Num_Compras = OLD.Num_Compras + 1
+WHERE Id_Pacote = fk_Pacote_Id_Pacote;
+END $$
+DELIMITER ;
+
+
+DROP TRIGGER IF EXISTS Tgr_Compra_Delete;
+DELIMITER $$
+CREATE TRIGGER Tgr_Compra_Delete
+AFTER DELETE -- A Trigger dispara após o DELETE
+ON Compra
+FOR EACH ROW
+BEGIN
+UPDATE Pacote
+SET Num_Compras = 
+WHERE ID_Prod = OLD.fk_ID_Prod;
+END $$
+DELIMITER ;
 
 -- Teste de criação de pacotes --
 -- INSERT INTO 
