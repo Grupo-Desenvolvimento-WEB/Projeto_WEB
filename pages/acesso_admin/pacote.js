@@ -1,8 +1,50 @@
+//Para Imagem:
+const imgInput = document.getElementById('img');
+const preview = document.getElementById('preview');
 
-document.getElementById('preco').addEventListener('input', function (e) {
-    this.value = this.value.replace(/\D/g, '');   // Input Card só aceita números
+imgInput.addEventListener('change', (event) => {
+    const file = event.target.files[0]; 
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+            preview.src = e.target.result; 
+            preview.style.display = 'block'; // Mostra a imagem
+        };
+        reader.readAsDataURL(file); 
+    } else {
+        preview.style.display = 'none';
+    }
 });
 
+//Para area de texto descrição:
+const descricaoInput = document.getElementById('descricao');
+
+descricaoInput.addEventListener('input', function () {
+    this.style.height = 'auto'; 
+    this.style.height = `${this.scrollHeight}px`; 
+});
+
+//Para input Preço
+const precoInput = document.getElementById('preco');
+
+// Evento para formatar o preço conforme o usuário digita
+precoInput.addEventListener('input', function () {
+    let value = precoInput.value;
+    value = value.replace(/\D/g, '');
+    if (value === '') {
+        precoInput.value = '';
+        return;
+    }
+    const formattedValue = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+    }).format(value / 100);
+
+    precoInput.value = formattedValue;
+});
+
+//Para criar pacotes
 const pacotes = []
 
 const salvar = async () => {

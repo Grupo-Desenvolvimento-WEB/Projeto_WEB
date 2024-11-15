@@ -11,6 +11,7 @@ CREATE TABLE Usuario (
 CREATE TABLE Pacote (
     Id_Pacote INT PRIMARY KEY AUTO_INCREMENT,
     Titulo VARCHAR(100) NOT NULL,
+    Imagem BLOB,
     Descricao VARCHAR(500),
     Preco FLOAT NOT NULL,
     Num_Compras INT DEFAULT 0

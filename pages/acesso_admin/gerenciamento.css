@@ -30,19 +30,119 @@ h2 {
 
 .formulario{
     display: flex;
-    flex-direction: column;
-    background-color: blanchedalmond;
-    height: 110%;
+    height: 100%;
+    width: 98%;
+    padding: 20px;
 }
 .add button{
-    display: flex;
-    flex-direction: row;
-    padding: 5px;
-    align-content: space-around;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
     background-color: blue;
-    color:white;
     height: 40px;
     width: 160px;
     border-radius: 25px;
     border: transparent;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+.adicionarPacote{
+    width: 90%;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #ddd;
+  
+}
+.camposInput{
+    display: flex;
+    flex-direction: column;
+}
+
+/* estilizando o botão de upload de arquivo */
+.file-upload {
+    display: inline-block; 
+    margin: 20px;
+}
+
+.upload-label {
+    background-color: #525252;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.upload-label:hover {
+    background-color: #45a049;
+}
+
+/* Contêiner de pré-visualização */
+#preview-container {
+    height: 50vh;
+    width: 48vw;;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#preview {
+    width: 45vw;
+    height: 50vh;
+    object-fit: cover;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.camposInput input, #descricao {
+    border-radius: 15px;
+    align-content: space-around;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background-color: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    resize: none; 
+    overflow: hidden; 
+}
+
+.camposInput{
+    width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.camposInput button {
+    width: 70%;
+    padding: 10px 15px;
+    font-size: 15px;
+    font-weight:400;
+    color: #fff;
+    background-color: #353535;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.submitButton{
+    display: flex;
+    justify-content:center ;
+    margin-top: 40px;
+}    
+
+.camposInput button:hover {
+    background-color: #45a049;
+}
+
+.camposInput button:active {
+    background-color: #3e8e41;
+    transform: scale(0.98);
 }
