@@ -38,7 +38,6 @@
                         const result = await response.json();
                         if (response.status === 201) {
                             alert('Conta criada com sucesso!');
-                            window.location.href = "https://www.youtube.com";
                         } else {
                             alert('Erro ao criar conta: ' + result.message);
                         }
@@ -70,7 +69,6 @@
                         const result = await response.json();
                         if (response.status === 200) {
                             alert(`Bem-vindo, ${result.nome}!`);
-                            window.location.href = "https://www.youtube.com";
                         } else {
                             alert(result.message);
                         }
