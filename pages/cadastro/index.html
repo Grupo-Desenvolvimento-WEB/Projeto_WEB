@@ -14,7 +14,7 @@
         <div class="form-container sign-up-container">
             <script>
                 const salvar = async () => {
-                    console.log('Entrou na função salvar');
+                    console.log('Entrou no salvar');
 
                     var nome = document.getElementById('nome').value;
                     var email = document.getElementById('email').value;
@@ -26,7 +26,7 @@
                         senha: senha
                     };
 
-                    console.log('Dados enviados para cadastro:', data);
+                    console.log(JSON.stringify(data));
                     try {
                         const response = await fetch(`http://localhost:3000/api/usuario`, {
                             method: "POST",
@@ -36,24 +36,18 @@
                             body: JSON.stringify(data),
                         });
                         const result = await response.json();
-                        console.log('Resposta do servidor:', result);
-
                         if (response.status === 201) {
                             alert('Conta criada com sucesso!');
-                            console.log('Redirecionando para YouTube...');
-                            window.location.href = "https://www.youtube.com";
                         } else {
-                            console.error('Erro ao criar conta:', result.message);
                             alert('Erro ao criar conta: ' + result.message);
                         }
                     } catch (error) {
                         console.error('Erro ao salvar usuário:', error);
-                        alert('Erro ao salvar usuário. Verifique sua conexão.');
                     }
                 };
 
                 const login = async () => {
-                    console.log('Entrou na função login');
+                    console.log('Tentando login');
 
                     var email = document.getElementById('login-email').value;
                     var senha = document.getElementById('login-senha').value;
@@ -63,7 +57,6 @@
                         senha: senha
                     };
 
-                    console.log('Dados enviados para login:', data);
                     try {
                         const response = await fetch(`http://localhost:3000/api/login`, {
                             method: "POST",
@@ -74,19 +67,13 @@
                         });
 
                         const result = await response.json();
-                        console.log('Resposta do servidor:', result);
-
                         if (response.status === 200) {
                             alert(`Bem-vindo, ${result.nome}!`);
-                            console.log('Redirecionando para YouTube...');
-                            window.location.href = "https://www.youtube.com";
                         } else {
-                            console.error('Erro no login:', result.message);
                             alert(result.message);
                         }
                     } catch (error) {
                         console.error('Erro ao fazer login:', error);
-                        alert('Erro ao fazer login. Verifique sua conexão.');
                     }
                 };
             </script>
