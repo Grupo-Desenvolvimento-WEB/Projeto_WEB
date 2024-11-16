@@ -10,10 +10,11 @@
 
 <body>
     <div class="container" id="container">
+        <!-- Formulário de Cadastro -->
         <div class="form-container sign-up-container">
             <script>
                 const salvar = async () => {
-                    console.log('entrou no salvar');
+                    console.log('Entrou no salvar');
 
                     var nome = document.getElementById('nome').value;
                     var email = document.getElementById('email').value;
@@ -21,21 +22,60 @@
 
                     var data = {
                         nome: nome,
-                        senha: senha,
-                        email: email
+                        email: email,
+                        senha: senha
                     };
 
                     console.log(JSON.stringify(data));
-                    const response = await fetch(`http://localhost:3000/api/usuario`, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(data),
-                    });
-                    const result = await response.json();
-                    console.log(result);
-                }
+                    try {
+                        const response = await fetch(`http://localhost:3000/api/usuario`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(data),
+                        });
+                        const result = await response.json();
+                        if (response.status === 201) {
+                            alert('Conta criada com sucesso!');
+                        } else {
+                            alert('Erro ao criar conta: ' + result.message);
+                        }
+                    } catch (error) {
+                        console.error('Erro ao salvar usuário:', error);
+                    }
+                };
+
+                const login = async () => {
+                    console.log('Tentando login');
+
+                    var email = document.getElementById('login-email').value;
+                    var senha = document.getElementById('login-senha').value;
+
+                    var data = {
+                        email: email,
+                        senha: senha
+                    };
+
+                    try {
+                        const response = await fetch(`http://localhost:3000/api/login`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(data),
+                        });
+
+                        const result = await response.json();
+                        if (response.status === 200) {
+                            alert(`Bem-vindo, ${result.nome}!`);
+                        } else {
+                            alert(result.message);
+                        }
+                    } catch (error) {
+                        console.error('Erro ao fazer login:', error);
+                    }
+                };
             </script>
 
             <form action="#">
@@ -54,6 +94,8 @@
                 <button onclick="salvar()" type="button">Criar Conta</button>
             </form>
         </div>
+
+        <!-- Formulário de Login -->
         <div class="form-container sign-in-container">
             <form action="#">
                 <h1>Realize seu Login</h1>
@@ -65,12 +107,14 @@
                     <a href="#" class="social"><i class="fab fa-linkedin-in"><img src="./linkedin.png" alt=""></i></a>
                 </div>
                 <span>ou use sua conta</span>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Senha" />
+                <input id="login-email" type="email" placeholder="Email" />
+                <input id="login-senha" type="password" placeholder="Senha" />
                 <a href="#">Esqueceu sua senha?</a>
-                <button>Login</button>
+                <button onclick="login()" type="button">Login</button>
             </form>
         </div>
+
+        <!-- Elementos decorativos -->
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
