@@ -118,15 +118,23 @@ router.get('/api/pacote', (req, res) => {
 });
 
 //endpoint para capturar um usuário por id
-router.get('/api/usuarios/:id', (req, res) => {
-    const id = req.params("id");
+router.get('/api/usuarios/:id_pacote', (req, res) => {
+    const id = req.params.id_pacote;
+    const sql = `SELECT titulo, imagem, descricao, preco FROM pacote WHERE id_pacote = ?`;
 
-    let sql = `SELECT u.id, u.email, u.status FROM usuario u WHERE u.id = ${id}`;
-    con.query(sql, function (err, result) {
-        if (err) throw err;
+    con.query(sql, [id], (err, result) => {
+        if (err) {
+            console.error("Erro ao consultar o banco de dados:", err); 
+            return res.status(500).send("Erro interno no servidor");
+        }
+
+        if (result.length === 0) {
+            return res.status(404).send("Pacote não encontrado");
+        }
         res.status(200).json(result[0]);
     });
 });
+
 
 //TABELA PACOTE - POST
 router.post('/api/pacote', (req, res) => {
@@ -146,14 +154,14 @@ router.post('/api/pacote', (req, res) => {
 //TABELA PACOTE - UPDATE
 router.put('/api/pacote/:id_pacote', (req, res) => {
     const id = req.params("id_pacote"); 
-    const { titulo, descricao, preco } = req.body; 
+    const { titulo,imagem, descricao, preco } = req.body; 
 
-    if (!titulo || !descricao || !preco) {
-        return res.status(400).send('Todos os campos (titulo, descricao, preco) são obrigatórios.');
+    if (!titulo || !imagem || !descricao || !preco) {
+        return res.status(400).send('Todos os campos (titulo, imagem, descricao, preco) são obrigatórios.');
     }
-    var sql = 'UPDATE pacote SET titulo = ?, descricao = ?, preco = ? WHERE id_pacote = ?';
+    var sql = 'UPDATE pacote SET titulo = ?, imagem = ?, descricao = ?, preco = ? WHERE id_pacote = ?';
 
-    con.query(sql, [titulo, descricao, preco, id], function (err, result) {
+    db.query(sql, [titulo, imagem, descricao, preco, id], function (err, result) {
         if (err) {
             console.error(err);
             return res.status(500).send('Erro ao atualizar o pacote');
@@ -169,23 +177,21 @@ router.put('/api/pacote/:id_pacote', (req, res) => {
 
 //TABELA PACOTE - DELETE
 router.delete('/api/pacote/:id_pacote', (req, res) => {
-    const id = req.params("id_pacote");
+    const id = req.params.id_pacote;
 
     var sql = 'DELETE FROM pacote WHERE id_pacote = ?';
     
-    con.query(sql, [id], function (err, result) {
+    db.query(sql, [id], function (err, result) {
         if (err) {
             console.error(err);  // Exibindo o erro no console para facilitar o diagnóstico
             return res.status(500).send('Erro ao excluir usuário');
         }
-
         if (result.affectedRows > 0) {
             res.status(200).send(`Pacote com id ${id} excluído`);
         } else {
             res.status(404).send(`Pacote com id ${id} não encontrado`);
         }
 
-    res.status(200).send(`Pacote com id ${id} excluído`);
 });
 });
 

@@ -38,7 +38,6 @@ ALTER TABLE Compra ADD CONSTRAINT FK_Compra_2
     ON UPDATE CASCADE
     ON DELETE RESTRICT;
     
-insert into pacote (titulo, descricao, preco) values( 'asdas',  'cscasc', 1254);
 SELECT * FROM USUARIO;
 SELECT * FROM PACOTE;
 SELECT id_pacote, titulo, preco, num_compras FROM pacote; 

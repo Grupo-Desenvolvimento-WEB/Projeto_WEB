@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Exemplo</title>
+    <style>
+        /* Estilo do popup */
+        .popup {
+            display: none; /* Inicialmente oculto */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        /* Fundo escurecido */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        /* Botão para abrir */
+        .open-popup-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Botão para fechar */
+        .close-popup-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Botão para abrir o popup -->
+    <button class="open-popup-btn">Abrir Popup</button>
+
+    <!-- Fundo escurecido -->
+    <div class="overlay"></div>
+
+    <!-- Popup -->
+    <div class="popup">
+        <h2>Editar Pacote:</h2>
+        <div class="containerEdt">
+            <label for="edtImagem">Imagem:</label>
+            <img id="preview" style="display: none;">
+            <input type="file" id="edtImagem" accept="image/*" hidden value="${pacote.imagem}">
+            <label for="edtTitulo">Título:</label>
+            <input type="text" id="edtTitulo" value="${pacote.titulo}">
+            <label for="edtDescricao">Descrição:</label>
+            <textarea id="edtDescricao">${pacote.descricao}</textarea>
+            <label for="edtPreco">Preço:</label>
+            <input type="text" id="edtPreco" value="${pacote.preco}">
+            <label for="edtNumCompras">Nº de Usuários que Compraram:</label>
+            <input type="number" id="edtNumCompras" value="${pacote.num_compras}" disabled>
+            <button onclick="salvarEdicao()">Salvar</button>
+            <button onclick="cancelarEdicao()">Cancelar</button>
+        </div>
+        <button class="close-popup-btn">Fechar</button>
+    </div>
+
+    <script>
+        // Seleção de elementos
+        const openPopupBtn = document.querySelector('.open-popup-btn');
+        const closePopupBtn = document.querySelector('.close-popup-btn');
+        const popup = document.querySelector('.popup');
+        const overlay = document.querySelector('.overlay');
+
+        // Função para abrir o popup
+        openPopupBtn.addEventListener('click', () => {
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
+        });
+
+        // Função para fechar o popup
+        closePopupBtn.addEventListener('click', () => {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+
+        // Fechar clicando no overlay
+        overlay.addEventListener('click', () => {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
