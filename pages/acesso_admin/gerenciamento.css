@@ -24,8 +24,13 @@ th {
     background-color: #f2f2f2;
 }
 h2 {
+    padding-top: 20px;
     text-align: center;
-    margin-top: 20px;
+}
+
+h5{
+    padding: 15px;
+    padding-left: 0;
 }
 
 .formulario{
@@ -35,26 +40,48 @@ h2 {
     padding: 20px;
 }
 .add button{
-    color: white;
+    display: flex;
+    align-items: center;  /* Alinha verticalmente o conteúdo (ícone e texto) */
+    justify-content: center;  /* Alinha o conteúdo horizontalmente */
+    padding: 10px 20px;
+    gap: 10px;
+    color:rgb(0, 0, 0);
     padding: 10px;
+    border: 1px solid black;
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
-    background-color: blue;
+    background-color: rgb(255, 255, 255);
     height: 40px;
-    width: 160px;
+    width: 16vw;
     border-radius: 25px;
-    border: transparent;
     margin-top: 15px;
-    margin-left: 15px;
+    margin-left: 20px;
+    margin-bottom: 20px;
 }
+.add button:hover{
+    background-color: blueviolet;
+    color: white;
+    border: transparent;
+}
+
 .adicionarPacote{
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
     width: 90%;
     padding: 10px;
     border-radius: 20px;
     background-color: #ddd;
-  
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
+
+.adicionarPacote.show {
+    display: block;
+    opacity: 1;
+}
+
 .camposInput{
     display: flex;
     flex-direction: column;
@@ -82,15 +109,15 @@ h2 {
 
 /* Contêiner de pré-visualização */
 #preview-container {
-    height: 50vh;
-    width: 48vw;;
+    height: 55vh;
+    width: 45vw;;
     margin-top: 20px;
     text-align: center;
 }
 
 #preview {
     width: 45vw;
-    height: 50vh;
+    height: 55vh;
     object-fit: cover;
     border: 2px solid #ccc;
     border-radius: 5px;

@@ -9,7 +9,7 @@ const mysql = require('mysql2');
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "PUC@1234", //Alterar a senha conforme a máquina que está rodando o programa
+    password: "Root#963", //Alterar a senha conforme a máquina que está rodando o programa
     database: "Projeto_Web"
 });
 
@@ -42,7 +42,7 @@ router.get('/api/usuario', (req, res) => {
 router.post('/api/usuario', (req, res) => {
     var usuario = req.body;
     console.log(usuario);
-    const query = `insert into usuario (Nome, Email, Senha) values ('${usuario.nome}','${usuario.email}','${usuario.senha}')`; // Ajuste a consulta SQL conforme o nome da sua tabela
+    const query = `insert into usuario (Nome, Email, Senha) values ('${usuario.nome}','${usuario.email}', MD5('${usuario.senha}'))`; // Ajuste a consulta SQL conforme o nome da sua tabela
     db.query(query, (err, results) => {
         if (err) {
             console.error('Erro ao buscar dados:', err);
@@ -53,11 +53,60 @@ router.post('/api/usuario', (req, res) => {
     });
 });
 
-// Ajuste a consulta SQL conforme o nome da tabela
+
+//TABELA USUÁRIO - UPDATE
+router.put('/api/usuario/:id', (req, res) => {
+    const id = req.params.id; 
+    const { nome, email, senha } = req.body; 
+
+    if (!nome || !email || !senha) {
+        return res.status(400).send('Todos os campos (nome, email, idade) são obrigatórios.');
+    }
+    var sql = 'UPDATE usuario SET nome = ?, email = ?, senha = ? WHERE id = ?';
+
+    con.query(sql, [nome, email, senha, id], function (err, result) {
+        if (err) {
+            console.error(err); // Exibe o erro no console
+            return res.status(500).send('Erro ao atualizar o usuário');
+        }
+
+        if (result.affectedRows > 0) {
+            res.status(200).send(`Usuário com id ${id} atualizado com sucesso`);
+        } else {
+            res.status(404).send(`Usuário com id ${id} não encontrado`);
+        }
+    });
+});
+
+
+
+//TABELA USUÁRIO - DELETE
+router.delete('/api/usuario/:id', (req, res) => {
+    const id = req.params("id");
+
+    var sql = 'DELETE FROM usuario WHERE id = ?';
+    
+    con.query(sql, [id], function (err, result) {
+        if (err) {
+            console.error(err);  // Exibindo o erro no console para facilitar o diagnóstico
+            return res.status(500).send('Erro ao excluir usuário');
+        }
+
+        if (result.affectedRows > 0) {
+            res.status(200).send(`Usuário com id ${id} excluído`);
+        } else {
+            res.status(404).send(`Usuário com id ${id} não encontrado`);
+        }
+
+    res.status(200).send(`usuario com id ${id} excluído`);
+});
+});
+
+// Ajustar a consulta SQL conforme o nome da tabela
 
 //TABELA PACOTE - GET
 router.get('/api/pacote', (req, res) => {
-    const query = 'SELECT * FROM pacote'; 
+    const query = 'SELECT id_pacote, titulo, descricao, preco, num_compras FROM pacote'; 
     db.query(query, (err, results) => {
         if (err) {
             console.error('Erro ao buscar dados:', err);
@@ -65,14 +114,25 @@ router.get('/api/pacote', (req, res) => {
             return;
         }
         res.json(results);
+    });
+});
+
+//endpoint para capturar um usuário por id
+router.get('/api/usuarios/:id', (req, res) => {
+    const id = req.params("id");
+
+    let sql = `SELECT u.id, u.email, u.status FROM usuario u WHERE u.id = ${id}`;
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        res.status(200).json(result[0]);
     });
 });
 
 //TABELA PACOTE - POST
 router.post('/api/pacote', (req, res) => {
-    var usuario = req.body;
-    console.log(usuario);
-    const query = `insert into Pacote (Titulo, Descricao, Preco) values ('${pacote.titulo}','${pacote.descricao}','${pacote.preco}')`; 
+    var pacote = req.body;
+    console.log(pacote);
+    const query = `insert into Pacote (Titulo, Imagem, Descricao, Preco) values ('${pacote.titulo}','${pacote.imagem}','${pacote.descricao}','${pacote.preco}')`; 
     db.query(query, (err, results) => {
         if (err) {
             console.error('Erro ao buscar dados:', err);
@@ -81,6 +141,52 @@ router.post('/api/pacote', (req, res) => {
         }
         res.json(results);
     });
+});
+
+//TABELA PACOTE - UPDATE
+router.put('/api/pacote/:id_pacote', (req, res) => {
+    const id = req.params("id_pacote"); 
+    const { titulo, descricao, preco } = req.body; 
+
+    if (!titulo || !descricao || !preco) {
+        return res.status(400).send('Todos os campos (titulo, descricao, preco) são obrigatórios.');
+    }
+    var sql = 'UPDATE pacote SET titulo = ?, descricao = ?, preco = ? WHERE id_pacote = ?';
+
+    con.query(sql, [titulo, descricao, preco, id], function (err, result) {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Erro ao atualizar o pacote');
+        }
+
+        if (result.affectedRows > 0) {
+            res.status(200).send(`Pacote com id ${id} atualizado com sucesso`);
+        } else {
+            res.status(404).send(`Pacote com id ${id} não encontrado`);
+        }
+    });
+});
+
+//TABELA PACOTE - DELETE
+router.delete('/api/pacote/:id_pacote', (req, res) => {
+    const id = req.params("id_pacote");
+
+    var sql = 'DELETE FROM pacote WHERE id_pacote = ?';
+    
+    con.query(sql, [id], function (err, result) {
+        if (err) {
+            console.error(err);  // Exibindo o erro no console para facilitar o diagnóstico
+            return res.status(500).send('Erro ao excluir usuário');
+        }
+
+        if (result.affectedRows > 0) {
+            res.status(200).send(`Pacote com id ${id} excluído`);
+        } else {
+            res.status(404).send(`Pacote com id ${id} não encontrado`);
+        }
+
+    res.status(200).send(`Pacote com id ${id} excluído`);
+});
 });
 
 app.use(router);

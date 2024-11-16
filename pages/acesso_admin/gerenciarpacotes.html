@@ -16,21 +16,21 @@
 <body>
     <header>
         <div class="add">
-            <button>
-                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="18" fill="currentColor"
+            <button type="button" onclick="showForm()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                     class="bi bi-plus-square-fill" viewBox="0 0 16 16">
                     <path
                         d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0" />
-                </svg>Adiconar Pacote
+                </svg>
+                Adicionar Pacote
             </button>
-
         </div>
     </header>
 
     <!-- lista de exemplo para fins da criação com conexão com o mysql-->
     <main>
-        <div class="adicionarPacote">
-            <h2>Preencha o Formulário</h2>
+        <div class="adicionarPacote" >
+            <h2>Adicionar Novo Pacote</h2>
             <form class="formulario" action="">
                 
                 <div class="image">
@@ -38,16 +38,17 @@
                         <img id="preview" alt="Pré-visualização da imagem" style="display: none;">
                     </div>
                     <div class="file-upload">
-                        <label for="img" class="upload-label">   Selecionar   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-image-fill" viewBox="0 0 16 16">
+                        <label for="img" class="upload-label">   Selecionar <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-image-fill" viewBox="0 0 16 16">
                             <path d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2zm1 9v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062zm5-6.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0"/>
                           </svg></label>
                         <input type="file" id="img" accept="image/*" hidden>
                     </div>
                 </div>
                 <div class="camposInput">
+                    <h5>Preencha o Formulário:</h5>
                     <input type="text" id="titulo" placeholder="Nome/Título do Pacote" autocomplete="off" maxlength="100">
                     <textarea id="descricao" placeholder="Descrição" maxlength="500" rows="1"></textarea>                    
-                    <input type="text" id="preco" placeholder="Preço" autocomplete="off">
+                    <input type="text" id="preco" placeholder="Preço" autocomplete="off" maxlength="20">
                     <div class="submitButton">
                         <button type="submit" onclick="salvar()">Adicionar Pacote</button>
                     </div>
@@ -59,39 +60,15 @@
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Nome</th>
+                    <th>Título</th>
+                    <th>Descrição</th>
                     <th>Preço</th>
-                    <th>Destino</th>
                     <th>Nº de Usuários que Compraram</th>
-                    <th><button>a</button><button>b</button></th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-
-                <!-- <tr>
-                    <td>Pacote Aventura</td>
-                    <td>R$ 1.200,00</td>
-                    <td>Serra Gaúcha</td>
-                    <td>150</td>
-                </tr>
-                <tr>
-                    <td>Pacote Praias</td>
-                    <td>R$ 950,00</td>
-                    <td>Fernando de Noronha</td>
-                    <td>230</td>
-                </tr>
-                <tr>
-                    <td>Pacote Europa</td>
-                    <td>R$ 5.500,00</td>
-                    <td>Paris, França</td>
-                    <td>80</td>
-                </tr>
-                <tr>
-                    <td>Pacote Nacional</td>
-                    <td>R$ 800,00</td>
-                    <td>Rio de Janeiro</td>
-                    <td>320</td>
-                </tr> -->
+                <!-- espaço a ser preenchido -->
             </tbody>
         </table>
     </main>

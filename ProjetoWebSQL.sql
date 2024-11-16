@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS projeto_web;
 CREATE DATABASE Projeto_Web;
 USE Projeto_Web;
 
@@ -11,9 +12,9 @@ CREATE TABLE Usuario (
 CREATE TABLE Pacote (
     Id_Pacote INT PRIMARY KEY AUTO_INCREMENT,
     Titulo VARCHAR(100) NOT NULL,
-    Imagem BLOB,
+    Imagem LONGBLOB,
     Descricao VARCHAR(500),
-    Preco FLOAT NOT NULL,
+    Preco DECIMAL(10 ,2) NOT NULL,
     Num_Compras INT DEFAULT 0
 );
 
@@ -37,8 +38,11 @@ ALTER TABLE Compra ADD CONSTRAINT FK_Compra_2
     ON UPDATE CASCADE
     ON DELETE RESTRICT;
     
+insert into pacote (titulo, descricao, preco) values( 'asdas',  'cscasc', 1254);
 SELECT * FROM USUARIO;
 SELECT * FROM PACOTE;
+SELECT id_pacote, titulo, preco, num_compras FROM pacote; 
+
 
 DROP TRIGGER IF EXISTS Tgr_Compra_Insert;
 DELIMITER $$
@@ -67,16 +71,16 @@ END $$
 DELIMITER ;
 
 -- Teste de criação de pacotes --
-INSERT INTO Pacote (Titulo, Descricao, Preco) VALUES
-('Barramas', 'Descubra a beleza exótica de Barramas, onde praias de areia branca e águas cristalinas esperam por você.', 0.00),
-('Rio de Janeiro', 'Explore o vibrante Rio de Janeiro, famoso por seu carnaval, suas praias icônicas e a impressionante estátua do Cristo Redentor.', 0.00),
-('Maceió', 'Maceió oferece um cenário tropical com suas lagoas azuis e praias encantadoras, ideal para relaxar e desfrutar do sol.', 0.00),
-('Gramados', 'A charmosa Gramado é conhecida por seu clima europeu, arquitetura pitoresca e festivais sazonais encantadores.', 0.00),
-('Porto Seguro', 'Porto Seguro é o destino perfeito para quem busca diversão e cultura, com suas praias deslumbrantes e rica história.', 0.00),
-('Tokyo', 'Tokyo combina a modernidade com a tradição, oferecendo uma experiência única com seus templos antigos e arranha-céus futuristas.', 0.00),
-('Irlanda', 'A Irlanda é conhecida por suas paisagens verdes, castelos históricos e a calorosa hospitalidade de seus habitantes.', 0.00),
-('Barcelona', 'Barcelona encanta com sua arquitetura deslumbrante de Gaudí, suas praias e uma vibrante cena cultural e gastronômica.', 0.00),
-('Paris', 'Paris, a cidade das luzes, é famosa por seus monumentos icônicos, museus de renome e uma rica tradição de café e gastronomia.', 0.00);
+-- INSERT INTO Pacote (Titulo, Descricao, Preco) VALUES
+-- ('Barramas', 'Descubra a beleza exótica de Barramas, onde praias de areia branca e águas cristalinas esperam por você.', 0.00),
+-- ('Rio de Janeiro', 'Explore o vibrante Rio de Janeiro, famoso por seu carnaval, suas praias icônicas e a impressionante estátua do Cristo Redentor.', 0.00),
+-- ('Maceió', 'Maceió oferece um cenário tropical com suas lagoas azuis e praias encantadoras, ideal para relaxar e desfrutar do sol.', 0.00),
+-- ('Gramados', 'A charmosa Gramado é conhecida por seu clima europeu, arquitetura pitoresca e festivais sazonais encantadores.', 0.00),
+-- ('Porto Seguro', 'Porto Seguro é o destino perfeito para quem busca diversão e cultura, com suas praias deslumbrantes e rica história.', 0.00),
+-- ('Tokyo', 'Tokyo combina a modernidade com a tradição, oferecendo uma experiência única com seus templos antigos e arranha-céus futuristas.', 0.00),
+-- ('Irlanda', 'A Irlanda é conhecida por suas paisagens verdes, castelos históricos e a calorosa hospitalidade de seus habitantes.', 0.00),
+-- ('Barcelona', 'Barcelona encanta com sua arquitetura deslumbrante de Gaudí, suas praias e uma vibrante cena cultural e gastronômica.', 0.00),
+-- ('Paris', 'Paris, a cidade das luzes, é famosa por seus monumentos icônicos, museus de renome e uma rica tradição de café e gastronomia.', 0.00);
 
 
 

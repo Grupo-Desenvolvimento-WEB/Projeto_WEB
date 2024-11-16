@@ -36,105 +36,124 @@ precoInput.addEventListener('input', function () {
         precoInput.value = '';
         return;
     }
-    const formattedValue = new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-    }).format(value / 100);
+    // const formattedValue = new Intl.NumberFormat('pt-BR', {
+    //     style: 'currency',
+    //     currency: 'BRL',
+    // }).format(value / 100);
 
-    precoInput.value = formattedValue;
 });
 
+//Botão para abrir o formulário
+function showForm() {
+    const formDiv = document.querySelector('.adicionarPacote');
+
+    if (formDiv.classList.contains('show')) {
+        formDiv.classList.remove('show');
+        setTimeout(() => (formDiv.style.display = 'none'), 300); 
+    } else {
+        formDiv.style.display = 'block';
+        setTimeout(() => formDiv.classList.add('show'), 0); 
+    }
+}
+
+
 //Para criar pacotes
-const pacotes = []
 
 const salvar = async () => {
     console.log('entrou no salvar');
 
     var titulo = document.getElementById('titulo').value;
+    var imagem = document.getElementById('img').value;
     var descricao = document.getElementById('descricao').value;
     var preco = document.getElementById('preco').value;
+    
 
-    var data = {
+    var pacote = {
         titulo: titulo,
+        imagem: imagem,
         descricao: descricao,
         preco: preco
     };
 
-    console.log(JSON.stringify(data));
+    console.log(JSON.stringify(pacote));
     const response = await fetch(`http://localhost:3000/api/pacote`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(pacote),
     });
     const result = await response.json();
     console.log(result);
 }
 
-// Função para atualizar a tabela
-function updateTable() {
-    const tableBody = document.querySelector('#pacotes tbody');
-    tableBody.innerHTML = '';
+//Teste console
+const teste = async ()=>{
+    const response = await fetch('http://localhost:3000/api/pacote');
+    const pacotes = await response.json();
+    console.log(pacotes);    
 
-    packages.forEach((pkg, index) => {
-        const row = document.createElement('tr');
-        row.innerHTML = `<tr>
-            <td>${pkg.nome}</td>
-            <td>R$ ${pkg.preco}</td>
-            <td>${pkg.descricao}</td>
-            <td>
-                <button onclick="editPackage(${index})">Editar</button>
-                <button onclick="deletePackage(${index})">Excluir</button>
-            </td>
-            <tr>
-        `;
-        tableBody.appendChild(row);
-    });}
+    pacotes.forEach(Pacote => {
+        console.log('ID:', Pacote.id_pacote);
+        console.log('Título:', Pacote.titulo);
+        console.log('Preço:', Pacote.preco);
+        console.log('Número de Compras:', Pacote.num_compras);
+    });
+}
+
+//Atualiza a tabela
+const listar = async () => {
+    const response = await fetch(`http://localhost:3000/api/pacote`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+    const result = await response.json();
+    
+    console.log(result);
+
+    const tabelaPacotes = document.getElementById('pacotes');
+    result.forEach((pacote, index) => {                
+        var row = tabelaPacotes.insertRow(index + 1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
+        var cell6 = row.insertCell(5);
+
+        cell1.innerHTML = pacote.id_pacote;
+        cell2.innerHTML = pacote.titulo;
+        cell3.innerHTML = pacote.descricao;
+        cell4.innerHTML = `R$ ${parseFloat(pacote.preco).toFixed(2).replace('.', ',')}`;
+        cell5.innerHTML = pacote.num_compras;
+        cell6.innerHTML = `<button onclick="editar(${pacote.id_pacote})">Editar</button>
+                           <button onclick="excluir(${pacote.id_pacote})">Excluir</button>`;
+    
+    });
+}
+
+//Funções para os botões
+const editar = (id_pacote) => {
+    console.log("entrou na função carregar");
+    console.log(id_pacote);
+    location.href = 'gerenciamentopacotes.html?id=' + id_pacote;
+}
+
+const excluir = async (id_pacote) => {
+    console.log("chamou o excluir");
+    console.log(id_pacote);
+    const response = await fetch(`http://localhost:3000/api/pacote/${id_pacote}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+    const result = await response.json();
+    console.log(result);
+}
+listar();
+teste();
 
 
-
-    ////////////////////////
-    const listar = async () => {
-        const response = await fetch(`http://localhost:3000/api/pacotes`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        });
-        const result = await response.json();
-        console.log(result);
-
-        const tabelaPacotes = document.getElementById('pacotes');
-        result.forEach((pacote, index) => {                
-            var row = tabelaPacotes.insertRow(index + 1);
-            var cell1 = row.insertCell(0);
-            var cell2 = row.insertCell(1);
-            var cell3 = row.insertCell(2);
-            var cell4 = row.insertCell(3);
-
-            cell1.innerHTML = pacote.titulo;
-            cell2.innerHTML = pacote.preco;
-            cell3.innerHTML = '<button onclick="carregar('+pacote.titulo+')">Editar</editar>';
-            cell4.innerHTML = '<button onclick="excluir('+pacote.titulo+')">Excluir</editar>';
-        });
-    }
-    listar();
-
-    const carregar = (id) => {
-        console.log("entrou na função carregar")
-        console.log(id);
-        location.href = 'gerenciamentopscotes.html?id='+id;
-    }
-
-    const excluir = async (id) => {
-        console.log("chamou o excluir");
-        console.log(id);
-        const response = await fetch(`http://localhost:3000/api/usuarios/${id}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        });
-        const result = await response.body;
-        console.log(result);}
