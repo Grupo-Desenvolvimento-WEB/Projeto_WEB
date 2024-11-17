@@ -190,6 +190,7 @@
 
     <!-- Footer -->
     <footer class="py-3 my-4">
+    <button onclick="carregarPagina(1)">Pacote 1</button>
       <ul class="nav justify-content-center border-bottom pb-3 mb-3">
         <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
         <li class="nav-item"><a href="./acesso_admin/gerenciarpacotes.html" class="nav-link px-2 text-body-secondary">Pacotes</a></li>
@@ -201,7 +202,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-rbF7/ogpII6KtFAewvErDoTXFYdRUpq1cG5AYpA3KZtZK1p63E15rYMGKzBprLI+" crossorigin="anonymous">
     </script>
-    <script src="./mainpage/dados.js"></script>
-    <script src="./mainpage/page.js"></script>
+    <script>
+        function carregarPagina(id) {
+            location.href = `./mainpage/page.html?id=${id}`;
+        }
+    </script>
 </body>
 </html>

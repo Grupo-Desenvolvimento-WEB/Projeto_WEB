@@ -56,9 +56,7 @@ function showForm() {
     }
 }
 
-
 //Para criar pacotes
-
 const salvar = async () => {
     console.log('entrou no salvar');
 
@@ -158,46 +156,50 @@ const editar = async (id_pacote) => {
         console.error(`Pacote com ID ${id_pacote} não encontrado`);
         return;
     }
-    const existingEditor = document.querySelector('.containerEdt');
-    const openEditar = document.querySelector('.open-popup-btn');
-    const popup = document.querySelector('.popup');
+
+    const popup = document.querySelector('.popup'); 
     const overlay = document.querySelector('.overlay');
 
-    openEditar.addEventListener('click', () => {
-        popup.style.display = 'block';
-        overlay.style.display = 'block';
-    });
+    const openEditar = document.querySelectorAll('.edt_del');
+    
+    openEditar.forEach((botao) => { 
+        botao.addEventListener('click', ()=> {
+
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
+
+            document.querySelector('.containerEdt').innerHTML = `
+                <div class="containerEdt">
+                    <h3>Editar Pacote</h3>
+                    <label for="edtImagem">Imagem:</label>
+                    <br>
+                    <img id="preview" style="display: none;">
+                    <input type="file" id="edtImagem" accept="image/*" hidden value="${pacote.imagem}">
+                    <label for="edtTitulo">Título:</label>
+                    <input type="text" id="edtTitulo" value="${pacote.titulo}">
+                    <label for="edtDescricao">Descrição:</label>
+                    <textarea id="edtDescricao">${pacote.descricao}</textarea>
+                    <label for="edtPreco">Preço:</label>
+                    <input type="text" id="edtPreco" value="${pacote.preco}">
+                    <br>
+                    <div class="botoes" style="display: flex;">
+                        <button class="atualizar-btn" onclick="salvarEdicao(${id_pacote})">Salvar</button>
+                        <button class="cancelar-btn" onclick="cancelarEdicao()">Cancelar</button>
+                    </div>    
+                </div>
+    `;
+    
+        })
+    })
+    
+               
 
     overlay.addEventListener('click', () => {
         popup.style.display = 'none';
         overlay.style.display = 'none';
     });
+    console.log(pacote);
 
-    if (existingEditor) {
-        existingEditor.remove();
-    }
-
-    const row = document.createElement('div');
-    row.innerHTML = `
-        <div class="containerEdt">
-            <h3>Editar Pacote</h3>
-            <label for="edtImagem">Imagem:</label>
-            <img id="preview" style="display: none;">
-            <input type="file" id="edtImagem" accept="image/*" hidden value="${pacote.imagem}">
-            <label for="edtTitulo">Título:</label>
-            <input type="text" id="edtTitulo" value="${pacote.titulo}">
-            <label for="edtDescricao">Descrição:</label>
-            <textarea id="edtDescricao">${pacote.descricao}</textarea>
-            <label for="edtPreco">Preço:</label>
-            <input type="text" id="edtPreco" value="${pacote.preco}">
-            <label for="edtNumCompras">Nº de Usuários que Compraram:</label>
-            <input type="number" id="edtNumCompras" value="${pacote.num_compras}" disabled>
-            <button onclick="salvarEdicao(${id_pacote})">Salvar</button>
-            <button onclick="cancelarEdicao()">Cancelar</button>
-        </div>
-    `;
-    const tabelaPacotes = document.getElementById('pacotes');
-    tabelaPacotes.parentElement.appendChild(row);
 };
 
 // Função para salvar as alterações
@@ -231,10 +233,12 @@ const salvarEdicao = async (id_pacote) => {
 
 // Função para cancelar a edição
 const cancelarEdicao = () => {
-    const editor = document.querySelector('.containerEdt');
-    if (editor) {
-        editor.remove();
-    }
+    const popup = document.querySelector('.popup');
+    const overlay = document.querySelector('.overlay');
+
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+    
 };
   //location.href = 'gerenciamentopacotes.html?id=' + id_pacote;
 
@@ -249,8 +253,8 @@ const excluir = async (id_pacote) => {
     });
     const result = await response.json();
     console.log(result);
-    console.log("apagado com sucesso")
-    // location.href = 'gerenciamentopacotes.html?'
+    console.alert("apagado com sucesso")
+    location.href = 'gerenciamentopacotes.html'
 }
 listar();
 teste();

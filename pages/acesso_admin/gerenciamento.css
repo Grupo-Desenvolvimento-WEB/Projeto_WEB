@@ -176,7 +176,7 @@ h5{
 
 .edt_del{
     background-color: #3a2585;
-    color: #ddd;
+    color: #f7f7f7;
     gap: 10px;
     padding: 8px 20px;
     border-radius: 15px;
@@ -188,6 +188,7 @@ td .descricao{
 .containerEdt{
     display: flex;
     flex-direction: column;
+
 }
 
 .overlay {
@@ -200,3 +201,18 @@ td .descricao{
     z-index: 999;
     display: none; 
 }
+.popup {
+    display: none; 
+    position: fixed;
+    width: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #858585;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+

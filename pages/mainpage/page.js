@@ -45,3 +45,35 @@ function pesquisar() {
     section.innerHTML = resultado //Substitui elementos no arquivo html
 
 }
+
+async function carregarDadosPacote() {
+    const params = new URLSearchParams(window.location.search);
+    const idPacote = params.get('id_pacote');
+
+    if (!idPacote) {
+        document.getElementById('detalhesPacote').innerHTML = '<p>ID do pacote não encontrado.</p>';
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:3000/api/pacote/${idPacote}`);
+        if (!response.ok) {
+            throw new Error('Erro ao carregar os dados do pacote.');
+        }
+
+        const pacote = await response.json();
+
+        // Atualiza a página com os dados do pacote
+        document.getElementById('detalhesPacote').innerHTML = `
+            <h2>${pacote.titulo}</h2>
+            <img src="${pacote.imagem}" alt="${pacote.titulo}" style="max-width: 300px;">
+            <p><strong>Descrição:</strong> ${pacote.descricao}</p>
+            <p><strong>Preço:</strong> R$ ${parseFloat(pacote.preco).toFixed(2).replace('.', ',')}</p>
+        `;
+    } catch (error) {
+        console.error(error);
+        document.getElementById('detalhesPacote').innerHTML = '<p>Erro ao carregar os detalhes do pacote.</p>';
+    }
+}
+
+carregarDadosPacote();

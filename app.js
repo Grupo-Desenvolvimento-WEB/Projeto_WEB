@@ -117,12 +117,12 @@ router.get('/api/pacote', (req, res) => {
     });
 });
 
-//endpoint para capturar um usuário por id
-router.get('/api/usuarios/:id_pacote', (req, res) => {
+//endpoint para capturar um pacote por id
+router.get('/api/pacote/:id_pacote', (req, res) => {
     const id = req.params.id_pacote;
     const sql = `SELECT titulo, imagem, descricao, preco FROM pacote WHERE id_pacote = ?`;
 
-    con.query(sql, [id], (err, result) => {
+    db.query(sql, [id], (err, result) => {
         if (err) {
             console.error("Erro ao consultar o banco de dados:", err); 
             return res.status(500).send("Erro interno no servidor");
