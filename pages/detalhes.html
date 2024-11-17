@@ -4,25 +4,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes do Pacote</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="./homepage/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+        
+        body {
+            font-family: 'Questrial', sans-serif;
+            background-color: #f8f9fa; /* Cor de fundo suave */
+        }
+
+        main {
+            background: #ffffff; /* Fundo branco para o main */
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Efeito de sombra */
+        }
+
+        #pacote-imagem {
+            max-height: 400px; /* Altura máxima para imagens */
+            object-fit: cover; /* Ajusta a imagem proporcionalmente */
+        }
+
+        #pacote-nome {
+            color: #343a40; /* Texto escuro */
+        }
+
+        #pacote-preco {
+            font-weight: bold;
+            color: #ff8800; /* Cor chamativa para o preço */
+        }
+    body {
+        font-family: 'Questrial', sans-serif;
+        background-color: #f8f9fa; /* Cor de fundo suave */
+    }
+
+    main {
+        background: #ffffff; /* Fundo branco para o main */
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Efeito de sombra */
+    }
+
+    #pacote-imagem {
+        max-height: 400px; /* Altura máxima para imagens */
+        object-fit: cover; /* Ajusta a imagem proporcionalmente */
+    }
+
+    #pacote-nome {
+        color: #343a40; /* Texto escuro */
+    }
+
+    #pacote-preco {
+        font-weight: bold;
+        color: #ff8800; /* Cor chamativa para o preço */
+    }
+</style>
 </head>
 <body>
-    <h1 id="pacote-nome">Carregando...</h1>
-    <script>
-        // Obtemos o ID do pacote a partir da URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const pacoteId = urlParams.get('id');
+     <!-- Header -->
+     <header class="p-3 mb-5 border-bottom">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+                    <img class="imageBrand" src="./homepage/logo.jpg" width="80" height="64">
+                </a>
 
-        // Fazemos uma requisição ao servidor para buscar os detalhes do pacote
-        fetch(`http://localhost:3000/api/pacote/${pacoteId}`)
-            .then(response => response.json())
-            .then(data => {
-                // Exibe o nome do pacote na página
-                document.getElementById('pacote-nome').textContent = data.titulo;
-            })
-            .catch(error => {
-                console.error('Erro ao buscar detalhes do pacote:', error);
-                document.getElementById('pacote-nome').textContent = 'Erro ao carregar os detalhes do pacote.';
-            });
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" class="nav-link px-2 link-secondary">Homepage</a></li>
+                    <li><a href="#" class="nav-link px-2 link-body-emphasis">Passagens</a></li>
+                    <li><a href="#" class="nav-link px-2 link-body-emphasis">Promoções</a></li>
+                </ul>
+
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <input type="text" class="form-control" placeholder="Pesquisar" aria-label="Search" id="pesquisa">
+                </form>
+
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="imagens/irlanda.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu text-small">
+                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="#">Configurações</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Deslogar</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content (Placeholder) -->
+    <main>
+        <h1>Detalhes do Pacote</h1>
+        <main class="container my-5">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <img id="pacote-imagem" src="" alt="Imagem do Pacote" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-md-6">
+                    <h1 id="pacote-nome" class="display-4 mb-3">Carregando...</h1>
+                    <p id="pacote-descricao" class="lead">Descrição do pacote será carregada aqui.</p>
+                    <p id="pacote-preco" class="h4 text-primary">Preço: R$ 0,00</p>
+                </div>
+            </div>
+        </main>>
+    </main>
+    <script>
+          // Obtemos o ID do pacote a partir da URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const pacoteId = urlParams.get('id');
+
+    // Fazemos uma requisição ao servidor para buscar os detalhes do pacote
+    fetch(`http://localhost:3000/api/pacote/${pacoteId}`)
+        .then(response => response.json())
+        .then(data => {
+            // Atualiza os elementos na página com os dados do pacote
+            document.getElementById('pacote-nome').textContent = data.titulo;
+            document.getElementById('pacote-descricao').textContent = data.descricao;
+            document.getElementById('pacote-preco').textContent = `Preço: R$ ${data.preco}`;
+            document.getElementById('pacote-imagem').src = data.imagem;
+        })
+        .catch(error => {
+            console.error('Erro ao buscar detalhes do pacote:', error);
+            document.getElementById('pacote-nome').textContent = 'Erro ao carregar os detalhes do pacote.';
+        });
+        
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     </script>
 </body>
 </html>
