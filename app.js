@@ -336,7 +336,7 @@ router.post('/api/compra', (req, res) => {
 });
 
 
-app.use('/Imagens', express.static('imagens'));
+app.use('/Images', express.static('imagens'));
 
 app.use(router);
 
