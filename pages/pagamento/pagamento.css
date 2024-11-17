@@ -65,9 +65,8 @@ p {
 .part.card-details h1 {
   background-color: rgba(255, 145, 0, 0.8);
   color: rgb(0, 0, 0);
-  font-family: 'Montserrat', sans-serif;
-  font-size: 18px;
-  font-style: initial;
+  font-size: 23px;
+  font-style:normal;
   text-transform: uppercase;
   padding: 14px 0 10px 49px;
   letter-spacing: 1px;

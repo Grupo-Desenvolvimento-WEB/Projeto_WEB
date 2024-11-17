@@ -121,7 +121,7 @@
                     <p id="pacote-descricao" class="lead">Descrição do pacote será carregada aqui.</p>
                     <p id="pacote-preco" class="h4 text-primary">R$ 0.00</p>
 
-                    <a href="pagamento/pagamento.html" target="_blank" class="btn btn-comprar">Comprar</a>
+                    <button class="btn btn-comprar" onclick="iniciarPagamento()">Comprar</button>
 
                 </div>
             </div>
@@ -138,39 +138,33 @@
   </footer>
         
     <script>
-          // Obtém o ID do pacote a partir da URL
+          // Obtemos o ID do pacote a partir da URL
     const urlParams = new URLSearchParams(window.location.search);
-    const pacoteId = urlParams.get('id'); // Exemplo: detalhes.html?id=1
+    const pacoteId = urlParams.get('id');
 
-    // Faz uma requisição ao servidor para buscar os detalhes do pacote
+    // Fazemos uma requisição ao servidor para buscar os detalhes do pacote
     fetch(`http://localhost:3000/api/pacote/${pacoteId}`)
         .then(response => response.json())
         .then(data => {
-            // Verifica se os dados foram recebidos corretamente
-            console.log('Dados do Pacote:', data);
-
             // Atualiza os elementos na página com os dados do pacote
-            document.getElementById('pacote-nome').textContent = data.titulo || 'Nome não disponível';
-            document.getElementById('pacote-descricao').textContent = data.descricao || 'Descrição não disponível';
-            document.getElementById('pacote-preco').textContent = `R$ ${data.preco?.toFixed(2).replace('.', ',')}`;
-
-            // Atualiza o src da imagem
-            const imagemElemento = document.getElementById('pacote-imagem');
-            if (data.imagem) {
-                imagemElemento.src = data.imagem;
-            } else {
-                // Se não houver imagem, usar uma imagem padrão
-                imagemElemento.src = 'Imagens/praia.png'; //
-            }
-
+            document.getElementById('pacote-nome').textContent = data.titulo;
+            document.getElementById('pacote-descricao').textContent = data.descricao;
+            document.getElementById('pacote-preco').textContent = `R$ ${data.preco}`;
+            document.getElementById('pacote-imagem').src = data.imagem;
         })
         .catch(error => {
             console.error('Erro ao buscar detalhes do pacote:', error);
-            document.getElementById('pacote-nome').textContent = 'Erro ao carregar o pacote';
+            document.getElementById('pacote-nome').textContent = 'Erro ao carregar os detalhes do pacote.';
         });
+        
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function iniciarPagamento(){
+            location.href = './pagamento/pagamento.html';
+        }
+    </script>
 
 </body>
 </html>

@@ -47,7 +47,7 @@ router.get('/api/usuario', (req, res) => {
 
 //TABELA USUARIIO - POST
 router.post('/api/usuario', (req, res) => {
-    var usuario = req.body;
+    const usuario = req.body;
     console.log(usuario);
     const query = `insert into usuario (Nome, Email, Senha) values ('${usuario.nome}','${usuario.email}', MD5('${usuario.senha}'))`; // Ajuste a consulta SQL conforme o nome da sua tabela
     db.query(query, (err, results) => {
@@ -58,6 +58,24 @@ router.post('/api/usuario', (req, res) => {
         }
         res.json(results);
     });
+});
+
+//TABELA USUARIO
+app.post('/api/register', (req, res) => {
+    const nome = req.body.username;
+    const email = req.body.email;
+    const password = req.body.password;
+  
+    const sql = 'INSERT INTO Usuario (nome, email, senha) VALUES (?, ?, ?)';
+    const values = [nome, email, password];
+  
+    db.query(sql, values, (err, result) => {
+      if (err) {
+        console.error('Erro ao inserir dados no banco de dados:', err.message);
+      }
+    console.log('Usuário registrado ID: ${result.insertId}');
+    res.redirect("../index.html");
+  });
 });
 
 
@@ -220,6 +238,22 @@ router.delete('/api/pacote/:id_pacote', (req, res) => {
 
 });
 });
+
+//TABELA COMPRA
+router.post('/api/compra', (req, res) => {
+    const compra = req.body;
+    console.log(compra);
+    const query = `insert into compra (fk_Usuario_Id_Usuario, fk_Pacote_Id_Pacote) values ('${compra.id_pacote}','${compra.id_usuario}')`; 
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Erro ao buscar dados:', err);
+            res.status(500).send('Erro ao buscar dados');
+            return;
+        }
+        res.json(results);
+    });
+});
+
 
 app.use('/Imagens', express.static('imagens'));
 

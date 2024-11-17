@@ -21,9 +21,7 @@ CREATE TABLE Pacote (
 CREATE TABLE Compra (
     Id_Compra INT PRIMARY KEY AUTO_INCREMENT,
     fk_Usuario_Id_Usuario INT,
-    fk_Pacote_Id_Pacote INT,
-    DataPartida DATE NOT NULL,
-    DataRetorno DATE NOT NULL
+    fk_Pacote_Id_Pacote INT
 );
  
 ALTER TABLE Compra ADD CONSTRAINT FK_Compra_1
