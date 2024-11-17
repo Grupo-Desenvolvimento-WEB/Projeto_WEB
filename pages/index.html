@@ -9,6 +9,32 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
     </style>
+    <style>
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+    
+        .card-wrapper {
+            padding: 0.5rem;
+        }
+    
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            border-radius: 8px; /* Borda arredondada */
+            transition: transform 0.2s ease-in-out; /* Animação ao passar o mouse */
+        }
+    
+        .card:hover {
+            transform: scale(1.05); /* Aumenta levemente o tamanho ao passar o mouse */
+        }
+    
+        .card-img-top {
+            height: 180px; /* Altura fixa para imagens */
+            object-fit: cover; /* Garante que as imagens preencham o espaço sem distorcer */
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -86,11 +112,14 @@
                 <h2>Aproveite nossas promoções!</h2>
             </div>
         </div>
+
         <div class="container my-grid1 mt-4 card-container">
-            <div class="right">
-                <!-- Os cards serão gerados dinamicamente -->
+            <div class="row justify-content-center g-4">
+            <!-- Os cards serão gerados dinamicamente aqui -->
             </div>
         </div>
+
+
             <div class="left2">
                 <h2>Seu próximo destino inesquecível espera por você!</h2>
             </div>
