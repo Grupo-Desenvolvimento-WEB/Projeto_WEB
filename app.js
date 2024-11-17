@@ -8,8 +8,8 @@ const mysql = require('mysql2');
 
 const db = mysql.createConnection({
     host: "localhost",
-    user: "developer",
-    password: "1234567", //Alterar a senha conforme a máquina que está rodando o programa
+    user: "root",
+    password: "Root#963", //Alterar a senha conforme a máquina que está rodando o programa
     database: "Projeto_Web"
 });
 
@@ -106,7 +106,7 @@ router.delete('/api/usuario/:id', (req, res) => {
 
 //TABELA PACOTE - GET
 router.get('/api/pacote', (req, res) => {
-    const query = 'SELECT id_pacote, titulo, descricao, preco, num_compras FROM pacote'; 
+    const query = 'SELECT id_pacote, imagem, titulo, descricao, preco, num_compras FROM pacote'; 
     db.query(query, (err, results) => {
         if (err) {
             console.error('Erro ao buscar dados:', err);

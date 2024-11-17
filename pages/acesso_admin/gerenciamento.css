@@ -185,13 +185,13 @@ h5{
 }
 
 .edt_del{
-    background-color: #4227a0;
+    background-color: #2494a3;
     color: #f7f7f7;
     gap: 10px;
     transition: background-color 0.3s ease;
     padding: 8px 20px;
     border-radius: 15px;
-    border: #3a2585 1px;
+    border: #258580 1px;
 }
 .descricao{
     width: 2000px;

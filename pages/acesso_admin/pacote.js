@@ -183,7 +183,7 @@ const editar = async (id_pacote) => {
             document.querySelector('.containerEdt').innerHTML = `
                 <div class="containerEdt">
                     <h3>Editar Pacote:</h3>
-                    <label for="edtImagem" style="margin-bottom:5px">Imagem:</label>
+                    <label for="edtImagem" style="margin-bottom:0px">Imagem:</label>
                     <br>
                     <img id="previewEdt" style="display: none;">
                     <input type="file" id="edtImagem" accept="image/*" value="${pacotes.imagem}">
@@ -284,10 +284,16 @@ const excluir = async (id_pacote) => {
             "Content-Type": "application/json",
         }
     });
-    const result = await response.json();
-    console.log(result);
-    console.alert("apagado com sucesso")
-    location.href = 'gerenciamentopacotes.html'
+    
+    console.log(response);
+    if (response.ok) {
+        alert("apagado com sucesso")
+        location.href = 'gerenciarpacotes.html?'
+    } 
+    else {
+    console.error("Erro ao excluir pacote");
+    }   
+    
 }
 listar();
 //teste(1);

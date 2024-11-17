@@ -12,7 +12,7 @@ CREATE TABLE Usuario (
 CREATE TABLE Pacote (
     Id_Pacote INT PRIMARY KEY AUTO_INCREMENT,
     Titulo VARCHAR(100) NOT NULL,
-    Imagem LONGBLOB,
+    Imagem BLOB,
     Descricao VARCHAR(500),
     Preco DECIMAL(10 ,2) NOT NULL,
     Num_Compras INT DEFAULT 0
@@ -38,11 +38,6 @@ ALTER TABLE Compra ADD CONSTRAINT FK_Compra_2
     ON UPDATE CASCADE
     ON DELETE RESTRICT;
     
-SELECT * FROM USUARIO;
-SELECT * FROM PACOTE;
-SELECT id_pacote, titulo, preco, num_compras FROM pacote; 
-
-
 DROP TRIGGER IF EXISTS Tgr_Compra_Insert;
 DELIMITER $$
 CREATE TRIGGER Tgr_Compra_Insert
@@ -83,14 +78,17 @@ DELIMITER ;
 
 
 
--- INSERT INTO Pacote (Titulo, Descricao, Preco) VALUES
--- ('Paris', 'Pacote com visitas aos principais pontos turísticos como Torre Eiffel e Louvre.', 1500.00),
--- ('Rio de Janeiro', 'Inclui passeios pelo Cristo Redentor e praias de Copacabana.', 1200.00),
--- ('Nova Iorque', 'Explore a cidade que nunca dorme com visitas à Estátua da Liberdade e Central Park.', 1800.00),
--- ('Tóquio', 'Experiência cultural com visitas a templos e modernidade da cidade.', 2000.00),
--- ('Roma', 'Tour histórico com visitas ao Coliseu e Vaticano.', 1600.00),
--- ('Dubai', 'Inclui passeios pelo deserto e visita ao Burj Khalifa.', 2500.00),
--- ('Sydney', 'Descubra a Ópera de Sydney e as praias famosas.', 1700.00),
--- ('Londres', 'Visitas ao Big Ben e ao Palácio de Buckingham.', 1900.00),
--- ('Cairo', 'Tour pelas Pirâmides de Gizé e Museu Egípcio.', 1400.00),
--- ('Bangkok', 'Experiência cultural com templos e mercados flutuantes.', 1300.00);
+ INSERT INTO Pacote (Titulo, Descricao, Preco) VALUES
+ ('Paris', 'Pacote com visitas aos principais pontos turísticos como Torre Eiffel e Louvre.', 1500.00),
+ ('Rio de Janeiro', 'Inclui passeios pelo Cristo Redentor e praias de Copacabana.', 1200.00),
+ ('Nova Iorque', 'Explore a cidade que nunca dorme com visitas à Estátua da Liberdade e Central Park.', 1800.00),
+ ('Tóquio', 'Experiência cultural com visitas a templos e modernidade da cidade.', 2000.00),
+ ('Roma', 'Tour histórico com visitas ao Coliseu e Vaticano.', 1600.00),
+ ('Dubai', 'Inclui passeios pelo deserto e visita ao Burj Khalifa.', 2500.00),
+ ('Sydney', 'Descubra a Ópera de Sydney e as praias famosas.', 1700.00),
+ ('Londres', 'Visitas ao Big Ben e ao Palácio de Buckingham.', 1900.00),
+ ('Cairo', 'Tour pelas Pirâmides de Gizé e Museu Egípcio.', 1400.00),
+ ('Bangkok', 'Experiência cultural com templos e mercados flutuantes.', 1300.00);
+ 
+SELECT * FROM USUARIO;
+SELECT * FROM PACOTE;

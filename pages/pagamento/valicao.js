@@ -38,7 +38,7 @@ function validarFormulario() {
         return false;
     }
 
-    console.log(name);
+    console.log(nome);
     console.log("chamou validarFormulario");
     return true;
 }

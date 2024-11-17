@@ -118,7 +118,7 @@
 
     <!-- Footer -->
     <footer class="py-3 my-4">
-    <button onclick="carregarPagina(1)">Pacote 1</button>
+    <!-- <button onclick="carregarPagina(1)">Pacote 1</button> -->
       <ul class="nav justify-content-center border-bottom pb-3 mb-3">
         <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
         <li class="nav-item"><a href="./acesso_admin/gerenciarpacotes.html" class="nav-link px-2 text-body-secondary">Pacotes</a></li>
@@ -130,59 +130,12 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-rbF7/ogpII6KtFAewvErDoTXFYdRUpq1cG5AYpA3KZtZK1p63E15rYMGKzBprLI+" crossorigin="anonymous">
 
-        function carregarPagina(id) {
-            location.href = `./mainpage/page.html?id=${id}`;
-        }
+        // function carregarPagina(id) {
+        //     location.href = `./mainpage/page.html?id=${id}`;
+        // }
 
-        document.addEventListener('DOMContentLoaded', () => {
-        // Seleciona o container para os cards
-        const container = document.querySelector('.right');
-
-        // Limpa o container antes de gerar os cards
-        container.innerHTML = '<p>Carregando pacotes...</p>';
-
-        // Faz a requisição para a API
-        fetch('http://localhost:3000/api/pacote')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erro na requisição: ' + response.status);
-        }
-        return response.json();
-    })
-    .then(pacotes => {
-        console.log('Pacotes recebidos:', pacotes); // Adicionado para depuração
-        container.innerHTML = ''; // Limpa qualquer mensagem anterior
-
-        if (pacotes.length === 0) {
-            container.innerHTML = '<p>Nenhum pacote disponível no momento.</p>';
-            return;
-        }
-
-        pacotes.forEach(pacote => {
-            const card = `
-                <div class="card mb-5" style="width: 16rem;">
-                    <img src="${pacote.imagem}" class="card-img-top" alt="${pacote.titulo}">
-                    <div class="card-body">
-                        <h5 class="card-title">${pacote.titulo}</h5>
-                        <p class="card-text">${pacote.descricao}</p>
-                        <a href="#" class="btn btn-warning" onclick="redirecionarParaDetalhes(${pacote.id_pacote})">Veja os preços</a>
-                    </div>
-                </div>
-            `;
-            container.innerHTML += card;
-        });
-    })
-    .catch(error => {
-        console.error('Erro ao carregar pacotes:', error);
-        container.innerHTML = '<p>Erro ao carregar pacotes. Tente novamente mais tarde.</p>';
-    });
-    });
-
-    // Função para redirecionar para os detalhes do pacote
-    function redirecionarParaDetalhes(id) {
-        location.href = `detalhes.html?id=${id}`;
-    }
 
     </script>
+    <script src="./homepage/homepage.js"></script>
 </body>
 </html>
