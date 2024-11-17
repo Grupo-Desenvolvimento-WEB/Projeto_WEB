@@ -29,11 +29,19 @@ document.addEventListener('DOMContentLoaded', () => {
         container.innerHTML = '<p>Nenhum pacote disponível no momento.</p>';
         return;
     }
+    if (pacotes.imagem) {
+        console.log("BLOB recebido:", pacotes.imagem); // Certifique-se de que isso exibe dados binários
+        const imagemBase64 = Buffer.from(pacotes.imagem).toString('base64');
+        pacotes.imagem = `data:image/jpeg;base64,${imagemBase64}`;
+    } else {
+        console.warn("Campo 'imagem' está vazio ou nulo para o pacote:", pacotes.id_pacote);
+    }
+    
 
     pacotes.forEach(pacote => {
         const card = `
             <div class="card mb-5" style="width: 16rem;">
-                <img src="${pacote.imagem}" id="img" class="card-img-top" alt="${pacote.titulo}">
+                <img src="${pacote.imagemBase64}" id="img" class="card-img-top" alt="${pacote.titulo}">
                 <div class="card-body">
                     <h5 class="card-title">${pacote.titulo}</h5>
                     <p class="card-text">${pacote.descricao}</p>
@@ -41,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `;
+       
 
         container.innerHTML += card;
     });
@@ -50,6 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
     container.innerHTML = '<p>Erro ao carregar pacotes. Tente novamente mais tarde.</p>';
 });
 });
+
+
 
 // Função para redirecionar para os detalhes do pacote
 function redirecionarParaDetalhes(id) {
