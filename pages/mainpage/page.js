@@ -50,13 +50,21 @@ async function carregarDadosPacote() {
     const params = new URLSearchParams(window.location.search);
     const idPacote = params.get('id_pacote');
 
+    console.log("chegou aqui")
     if (!idPacote) {
         document.getElementById('detalhesPacote').innerHTML = '<p>ID do pacote não encontrado.</p>';
         return;
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/api/pacote/${idPacote}`);
+        const response = await fetch(`http://localhost:3000/api/pacote/${idPacote}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+            
+        });
+        console.log("chegou aqui")
         if (!response.ok) {
             throw new Error('Erro ao carregar os dados do pacote.');
         }

@@ -8,8 +8,8 @@ const mysql = require('mysql2');
 
 const db = mysql.createConnection({
     host: "localhost",
-    user: "developer",
-    password: "1234567", //Alterar a senha conforme a máquina que está rodando o programa
+    user: "root",
+    password: "Root#963", //Alterar a senha conforme a máquina que está rodando o programa
     database: "Projeto_Web"
 });
 
@@ -153,8 +153,8 @@ router.post('/api/pacote', (req, res) => {
 
 //TABELA PACOTE - UPDATE
 router.put('/api/pacote/:id_pacote', (req, res) => {
-    const id = req.params("id_pacote"); 
-    const { titulo,imagem, descricao, preco } = req.body; 
+    const id = req.params.id_pacote; 
+    const { titulo, imagem, descricao, preco } = req.body; 
 
     if (!titulo || !imagem || !descricao || !preco) {
         return res.status(400).send('Todos os campos (titulo, imagem, descricao, preco) são obrigatórios.');

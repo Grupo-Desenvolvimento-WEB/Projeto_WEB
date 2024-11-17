@@ -36,10 +36,6 @@ precoInput.addEventListener('input', function () {
         precoInput.value = '';
         return;
     }
-    // const formattedValue = new Intl.NumberFormat('pt-BR', {
-    //     style: 'currency',
-    //     currency: 'BRL',
-    // }).format(value / 100);
 
 });
 
@@ -85,18 +81,32 @@ const salvar = async () => {
 }
 
 //Teste console
-const teste = async () => {
-    const response = await fetch('http://localhost:3000/api/pacote');
-    const pacotes = await response.json();
-    console.log(pacotes);
+const teste = async (id_pacote) => {
+    try {
+        const response = await fetch(`http://localhost:3000/api/pacote/${id_pacote}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
 
-    pacotes.forEach(Pacote => {
-        console.log('ID:', Pacote.id_pacote);
-        console.log('Título:', Pacote.titulo);
-        console.log('Preço:', Pacote.preco);
-        console.log('Número de Compras:', Pacote.num_compras);
-    });
-}
+        if (!response.ok) {
+            console.error(`Erro: ${response.status} - ${response.statusText}`);
+            return;
+        }
+
+        const pacote = await response.json(); // Converte a resposta em JSON
+
+        // Aqui você acessa os dados do pacote
+        console.log('ID:', pacote.id_pacote);
+        console.log('Imagem:', pacote.imagem);
+        console.log('Título:', pacote.titulo);
+        console.log('Descrição:', pacote.descricao);
+        console.log('Preço:', pacote.preco);
+    } catch (error) {
+        console.error('Erro ao buscar o pacote:', error);
+    }
+};
 
 //Atualiza a tabela
 const listar = async () => {
@@ -146,16 +156,18 @@ const editar = async (id_pacote) => {
     console.log("Entrou na função editar");
     console.log(id_pacote);
 
-    const pacote = await fetch(`http://localhost:3000/api/pacote/${id_pacote}`, {
+    const response = await fetch(`http://localhost:3000/api/pacote/${id_pacote}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
         }
     });
-    if (!pacote) {
-        console.error(`Pacote com ID ${id_pacote} não encontrado`);
+    if (!response) {
+        console.error(`Pacote com ID ${id_pacote} não encontrado: ${response.statusText}`);
         return;
     }
+
+    const pacotes = await response.json();
 
     const popup = document.querySelector('.popup'); 
     const overlay = document.querySelector('.overlay');
@@ -170,35 +182,56 @@ const editar = async (id_pacote) => {
 
             document.querySelector('.containerEdt').innerHTML = `
                 <div class="containerEdt">
-                    <h3>Editar Pacote</h3>
-                    <label for="edtImagem">Imagem:</label>
+                    <h3>Editar Pacote:</h3>
+                    <label for="edtImagem" style="margin-bottom:5px">Imagem:</label>
                     <br>
-                    <img id="preview" style="display: none;">
-                    <input type="file" id="edtImagem" accept="image/*" hidden value="${pacote.imagem}">
+                    <img id="previewEdt" style="display: none;">
+                    <input type="file" id="edtImagem" accept="image/*" value="${pacotes.imagem}">
                     <label for="edtTitulo">Título:</label>
-                    <input type="text" id="edtTitulo" value="${pacote.titulo}">
+                    <input type="text" id="edtTitulo" value="${pacotes.titulo}">
                     <label for="edtDescricao">Descrição:</label>
-                    <textarea id="edtDescricao">${pacote.descricao}</textarea>
+                    <textarea id="edtDescricao">${pacotes.descricao}</textarea>
                     <label for="edtPreco">Preço:</label>
-                    <input type="text" id="edtPreco" value="${pacote.preco}">
+                    <input type="text" id="edtPreco" value="${pacotes.preco}">
                     <br>
                     <div class="botoes" style="display: flex;">
-                        <button class="atualizar-btn" onclick="salvarEdicao(${id_pacote})">Salvar</button>
+                        <button class="atualizar-btn" onclick="salvarEdicao(${id_pacote})">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-floppy2-fill" viewBox="0 0 16 16">
+                            <path d="M12 2h-2v3h2z"/>
+                            <path d="M1.5 0A1.5 1.5 0 0 0 0 1.5v13A1.5 1.5 0 0 0 1.5 16h13a1.5 1.5 0 0 0 1.5-1.5V2.914a1.5 1.5 0 0 0-.44-1.06L14.147.439A1.5 1.5 0 0 0 13.086 0zM4 6a1 1 0 0 1-1-1V1h10v4a1 1 0 0 1-1 1zM3 9h10a1 1 0 0 1 1 1v5H2v-5a1 1 0 0 1 1-1"/>
+                            </svg> Salvar Alterações
+                        </button>
                         <button class="cancelar-btn" onclick="cancelarEdicao()">Cancelar</button>
                     </div>    
                 </div>
     `;
+
+    //Para aparecer a imagem
+    const imgInputEdt = document.getElementById('edtImagem');
+    const previewEdt = document.getElementById('previewEdt');
+    imgInputEdt.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+    
+            reader.onload = (e) => {
+                previewEdt.src = e.target.result;
+                previewEdt.style.display = 'block'; // Mostra a imagem
+            };
+            reader.readAsDataURL(file);
+        } else {
+            previewEdt.style.display = 'none';
+        }
+    });
     
         })
     })
-    
-               
 
     overlay.addEventListener('click', () => {
         popup.style.display = 'none';
         overlay.style.display = 'none';
     });
-    console.log(pacote);
+    console.log(response);
 
 };
 
@@ -222,7 +255,7 @@ const salvarEdicao = async (id_pacote) => {
 
         if (response.ok) {
             alert("Pacote atualizado com sucesso!");
-            location.reload(); // Atualiza a tabela
+            location.reload();
         } else {
             console.error("Erro ao atualizar pacote");
         }
@@ -257,6 +290,6 @@ const excluir = async (id_pacote) => {
     location.href = 'gerenciamentopacotes.html'
 }
 listar();
-teste();
+//teste(1);
 
 

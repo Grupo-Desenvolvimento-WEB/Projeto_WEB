@@ -39,6 +39,16 @@ h5{
     width: 98%;
     padding: 20px;
 }
+
+.home button{
+    background-color: transparent;
+    border-radius: 25px;
+    padding: 18px 20px;
+    color: black;
+    font-size: 20px;
+    border: transparent;
+}
+
 .add button{
     display: flex;
     align-items: center;  
@@ -175,20 +185,25 @@ h5{
 }
 
 .edt_del{
-    background-color: #3a2585;
+    background-color: #4227a0;
     color: #f7f7f7;
     gap: 10px;
+    transition: background-color 0.3s ease;
     padding: 8px 20px;
     border-radius: 15px;
     border: #3a2585 1px;
 }
-td .descricao{
+.descricao{
     width: 2000px;
 }
 .containerEdt{
     display: flex;
     flex-direction: column;
 
+}
+.containerEdt label{
+    margin-bottom: 13px;
+    margin-top: 18px;
 }
 
 .overlay {
@@ -204,15 +219,37 @@ td .descricao{
 .popup {
     display: none; 
     position: fixed;
-    width: 50%;
+    width: 65%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
     border: 1px solid #858585;
     border-radius: 8px;
-    padding: 20px;
+    padding: 28px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1000;
+    transition: opacity 0.3s ease;
 }
 
+.atualizar-btn{
+    background-color: #8724a0;
+    color: white;
+    border-radius: 15px;
+    border: transparent;
+    width: 200px;
+    height: 37px;
+}
+.cancelar-btn{
+    background-color: #424242;
+    color: white;
+    border-radius: 15px;
+    border: transparent;
+    height: 37px;
+    width: 150px;
+    margin-left: 200px;
+}
+#previewEdt{
+    height: 100px;
+    object-fit: cover;
+}
