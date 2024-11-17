@@ -85,84 +85,12 @@
             <div class="left">
                 <h2>Aproveite nossas promoções!</h2>
             </div>
-            <div class="right">
-                <div class="card mb-5" style="width: 16rem;">
-                    <img src="imagens/Rio de Janeiro.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Rio de Janeiro</h5>
-                        <p class="card-text">Visite uma das 7 maravilhas do mundo</p>
-                        <a href="#" id="data-id" class="btn btn-warning" onclick="redirecionarParaDetalhes(2)">Veja os preços</a>
-                    </div>
-                </div>
-
-                <div class="card mb-5" style="width: 16rem;">
-                    <img src="imagens/Maragogi .png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Maceió</h5>
-                        <p class="card-text">Conheça o famoso Maragogi e suas belas praias</p>
-                        <a href="#" id="data-id" class="btn btn-warning" onclick="redirecionarParaDetalhes(3)">Veja os preços</a>
-                    </div>
-                </div>
-
-                <div class="card mb-5" style="width: 16rem;">
-                    <img src="imagens/Rio Grande.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Gramado</h5>
-                        <p class="card-text">Sinta-se na Europa aqui no Brasil</p>
-                        <a href="#" id="data-id" class="btn btn-warning" onclick="redirecionarParaDetalhes(4)">Veja os preços</a>
-                    </div>
-                </div>
-
-                <div class="card mb-5" style="width: 16rem;">
-                    <img src="imagens/Porto.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Porto Seguro</h5>
-                        <p class="card-text">Aproveite as festas e a cultura nordestina</p>
-                        <a href="#" id="data-id" class="btn btn-warning" onclick="redirecionarParaDetalhes(5)">Veja os preços</a>
-                    </div>
-                </div>
-            </div>
         </div>
-
         <div class="container my-grid1 mt-4 card-container">
             <div class="right">
-                <div class="card mb-5 space" style="width: 16rem;">
-                    <img src="imagens/japao.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Tokyo</h5>
-                        <p class="card-text">Desfrute de uma das culturas mais antigas que existem</p>
-                        <a href="#" id="data-id" class="btn btn-warning" onclick="redirecionarParaDetalhes(6)">Veja os preços</a>
-                    </div>
-                </div>
-
-                <div class="card mb-5" style="width: 16rem;">
-                    <img src="imagens/irlanda.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Irlanda</h5>
-                        <p class="card-text">Aprecie vistas impagáveis e locais históricos imperdíveis</p>
-                        <a href="#" id="data-id" class="btn btn-warning" onclick="redirecionarParaDetalhes(7)">Veja os preços</a>
-                    </div>
-                </div>
-
-                <div class="card mb-5" style="width: 16rem;">
-                    <img src="imagens/barcelona.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Barcelona</h5>
-                        <p class="card-text">Visite a capital catalã e conheça sua história</p>
-                        <a href="#" id="data-id" class="btn btn-warning" onclick="redirecionarParaDetalhes(8)">Veja os preços</a>
-                    </div>
-                </div>
-
-                <div class="card mb-5" style="width: 16rem;">
-                    <img src="imagens/paris.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Paris</h5>
-                        <p class="card-text">Desfrute da capital romântica com nosso pacote especial</p>
-                        <a href="#" id="data-id" class="btn btn-warning" onclick="redirecionarParaDetalhes(9)">Veja os preços</a>
-                    </div>
-                </div>
+                <!-- Os cards serão gerados dinamicamente -->
             </div>
-
+        </div>
             <div class="left2">
                 <h2>Seu próximo destino inesquecível espera por você!</h2>
             </div>
@@ -201,15 +129,58 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-rbF7/ogpII6KtFAewvErDoTXFYdRUpq1cG5AYpA3KZtZK1p63E15rYMGKzBprLI+" crossorigin="anonymous">
-    </script>
-    <script>
+
         function carregarPagina(id) {
             location.href = `./mainpage/page.html?id=${id}`;
         }
 
-        function redirecionarParaDetalhes(id) {
-    // Redireciona para a página detalhes.html com o ID como query string
-    location.href = `detalhes.html?id=${id}`;
+        document.addEventListener('DOMContentLoaded', () => {
+        // Seleciona o container para os cards
+        const container = document.querySelector('.right');
+
+        // Limpa o container antes de gerar os cards
+        container.innerHTML = '<p>Carregando pacotes...</p>';
+
+        // Faz a requisição para a API
+        fetch('http://localhost:3000/api/pacote')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro na requisição: ' + response.status);
+        }
+        return response.json();
+    })
+    .then(pacotes => {
+        console.log('Pacotes recebidos:', pacotes); // Adicionado para depuração
+        container.innerHTML = ''; // Limpa qualquer mensagem anterior
+
+        if (pacotes.length === 0) {
+            container.innerHTML = '<p>Nenhum pacote disponível no momento.</p>';
+            return;
+        }
+
+        pacotes.forEach(pacote => {
+            const card = `
+                <div class="card mb-5" style="width: 16rem;">
+                    <img src="${pacote.imagem}" class="card-img-top" alt="${pacote.titulo}">
+                    <div class="card-body">
+                        <h5 class="card-title">${pacote.titulo}</h5>
+                        <p class="card-text">${pacote.descricao}</p>
+                        <a href="#" class="btn btn-warning" onclick="redirecionarParaDetalhes(${pacote.id_pacote})">Veja os preços</a>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += card;
+        });
+    })
+    .catch(error => {
+        console.error('Erro ao carregar pacotes:', error);
+        container.innerHTML = '<p>Erro ao carregar pacotes. Tente novamente mais tarde.</p>';
+    });
+    });
+
+    // Função para redirecionar para os detalhes do pacote
+    function redirecionarParaDetalhes(id) {
+        location.href = `detalhes.html?id=${id}`;
     }
 
     </script>
