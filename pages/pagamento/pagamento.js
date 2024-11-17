@@ -41,7 +41,7 @@ document.getElementById('expiry').addEventListener('input', function (e) {
     this.value = this.value.replace(/\D/g, '');   // Input Card só aceita números
 });
 
-document.getElementById('ano').addEventListener('input', function (e) {
+document.getElementById('id').addEventListener('input', function (e) {
     this.value = this.value.replace(/\D/g, '');   // Input Card só aceita números
 });
 
@@ -50,8 +50,16 @@ document.getElementById('csv').addEventListener('input', function (e) {
 });
 
 
-function finalizarCompra(){
-    //adicionar o valor compra para o o histórico
+const finalizarCompra = async (id_pacote, id_usuario) => {
+    const response = await fetch(`http://localhost:3000/api/compra`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+    if (!response) {
+        console.error(`Pacote com ID ${id_pacote} ou Usuario ${id_usuario} não encontrados: ${response.statusText}`);
+        return;
+    }
 }
-
 

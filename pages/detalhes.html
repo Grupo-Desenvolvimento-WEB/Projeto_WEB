@@ -161,9 +161,48 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        //Script para compra
+        function getPacote(id_pacote) {
+            const pacoteId = id_pacote || new URLSearchParams(window.location.search).get('id');
+
+            if (!pacoteId) {
+                console.error('ID do pacote não encontrado!');
+                return null;
+            }
+            console.log('ID do Pacote:', pacoteId); 
+            return pacoteId; 
+        }
+
+        function getUsuario(id_usuario) {
+            // const urlParams = new URLSearchParams(window.location.search);
+            // const userId = urlParams.get('user_id'); // Substitua 'user_id' pelo nome do parâmetro na URL
+
+            const usuarioId = id_usuario || new URLSearchParams(window.location.search).get('usuario');
+
+            if (!pacoteId) {
+                console.error('ID do usuário não encontrado!');
+                return null;
+            }
+            console.log('ID do Usuario:', usuarioId); 
+            return usuarioId; 
+
+        }
+
+        const idUsuario = getUsuario();
+        const idPacote = getPacote(); 
+        if (idPacote && idUsuario) {
+            outraFuncao(idPacote, idUsuario); 
+        }
+        else{
+            console.log("erro ao encontrar as informações necessárias")
+        }
+
+        // function outraFuncao(id) {}
         function iniciarPagamento(){
             location.href = './pagamento/pagamento.html';
         }
+
+
     </script>
 
 </body>
