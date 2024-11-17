@@ -59,6 +59,17 @@
         font-weight: bold;
         color: #ff8800; /* Cor chamativa para o preço */
     }
+
+    .btn-comprar {
+    background-color: #0c71ff;
+    color: white;
+    width: 100%;
+    margin-top: 20px;
+    }  
+
+    .btn-comprar:hover {
+        background-color: #175cbd;
+    }
 </style>
 </head>
 <body>
@@ -71,9 +82,9 @@
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 link-secondary">Homepage</a></li>
-                    <li><a href="#" class="nav-link px-2 link-body-emphasis">Passagens</a></li>
-                    <li><a href="#" class="nav-link px-2 link-body-emphasis">Promoções</a></li>
+                    <li><a href="index.html" class="nav-link px-2 link-secondary">Homepage</a></li>
+                    <li><a href="./acesso_admin/gerenciarpacotes.html" class="nav-link px-2 link-body-emphasis">Passagens</a></li>
+                    <li><a href="./acesso_admin/gerenciarpacotes.html" class="nav-link px-2 link-body-emphasis">Promoções</a></li>
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -106,11 +117,24 @@
                 <div class="col-md-6">
                     <h1 id="pacote-nome" class="display-4 mb-3">Carregando...</h1>
                     <p id="pacote-descricao" class="lead">Descrição do pacote será carregada aqui.</p>
-                    <p id="pacote-preco" class="h4 text-primary">Preço: R$ 0,00</p>
+                    <p id="pacote-preco" class="h4 text-primary">R$ 0.00</p>
+
+                    <a href="pagamento/pagamento.html" target="_blank" class="btn btn-comprar">Comprar</a>
+
                 </div>
             </div>
-        </main>>
+        </main>
     </main>
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+          <li class="nav-item"><a href="index.html" class="nav-link px-2 text-body-secondary">Home</a></li>
+          <li class="nav-item"><a href="./acesso_admin/gerenciarpacotes.html" class="nav-link px-2 text-body-secondary">Pacotes</a></li>
+          <li class="nav-item"><a href="./acesso_admin/listausuarios.html" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+          <li class="nav-item"><a href="./cadastro/index.html" class="nav-link px-2 text-body-secondary">About</a></li>
+        </ul>
+        <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
+      </footer>
+        
     <script>
           // Obtemos o ID do pacote a partir da URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -123,7 +147,7 @@
             // Atualiza os elementos na página com os dados do pacote
             document.getElementById('pacote-nome').textContent = data.titulo;
             document.getElementById('pacote-descricao').textContent = data.descricao;
-            document.getElementById('pacote-preco').textContent = `Preço: R$ ${data.preco}`;
+            document.getElementById('pacote-preco').textContent = `R$ ${data.preco}`;
             document.getElementById('pacote-imagem').src = data.imagem;
         })
         .catch(error => {
