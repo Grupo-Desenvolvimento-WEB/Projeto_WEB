@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const card = `
                     <div class="col-lg-4 col-md-6 col-sm-12">
                         <div class="card h-100">
-                            <img src="${pacote.imagem}" class="card-img-top" alt="${pacote.titulo}">
+                            <img src="/Imagens/${pacote.imagem}" class="card-img-top" alt="${pacote.titulo}">
                             <div class="card-body">
                                 <h5 class="card-title">${pacote.titulo}</h5>
                                 <p class="card-text">${pacote.descricao}</p>

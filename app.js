@@ -109,9 +109,8 @@ router.delete('/api/usuario/:id', (req, res) => {
 });
 });
 
-// Ajustar a consulta SQL conforme o nome da tabela
-
 //TABELA PACOTE - GET
+// Atualizar o endpoint para listar pacotes
 router.get('/api/pacote', (req, res) => {
     const query = 'SELECT id_pacote, imagem, titulo, descricao, preco FROM pacote';
 
@@ -122,20 +121,27 @@ router.get('/api/pacote', (req, res) => {
             return;
         }
 
-        // Converte cada BLOB de imagem em Base64
+        // Adicionando logs para verificar o conteúdo das imagens
+        console.log('Pacotes encontrados:', results);
+
+        // Converte cada BLOB de imagem em Base64, se necessário
         const pacotes = results.map(pacote => {
             if (pacote.imagem) {
-                // Converte o BLOB para uma string Base64
-                const imagemBase64 = Buffer.from(pacote.imagem).toString('base64');
-                pacote.imagem = `data:image/jpeg;base64,${imagemBase64}`;
+                console.log(`Processando imagem para o pacote ${pacote.id_pacote}`);
+                // Verifica se é um BLOB ou uma URL
+                if (Buffer.isBuffer(pacote.imagem)) {
+                    const imagemBase64 = Buffer.from(pacote.imagem).toString('base64');
+                    pacote.imagem = `data:image/jpeg;base64,${imagemBase64}`;
+                }
+            } else {
+                console.warn(`Pacote ${pacote.id_pacote} não contém imagem.`);
             }
             return pacote;
         });
 
-        res.json(pacotes); // Retorna os pacotes com as imagens convertidas
+        res.json(pacotes);
     });
 });
-
 
 //endpoint para capturar um pacote por id
 router.get('/api/pacote/:id_pacote', (req, res) => {
@@ -214,6 +220,8 @@ router.delete('/api/pacote/:id_pacote', (req, res) => {
 
 });
 });
+
+app.use('/Imagens', express.static('imagens'));
 
 app.use(router);
 
