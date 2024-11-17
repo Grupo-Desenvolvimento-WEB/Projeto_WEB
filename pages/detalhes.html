@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Pacote</title>
+</head>
+<body>
+    <h1 id="pacote-nome">Carregando...</h1>
+    <script>
+        // Obtemos o ID do pacote a partir da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const pacoteId = urlParams.get('id');
+
+        // Fazemos uma requisição ao servidor para buscar os detalhes do pacote
+        fetch(`http://localhost:3000/api/pacote/${pacoteId}`)
+            .then(response => response.json())
+            .then(data => {
+                // Exibe o nome do pacote na página
+                document.getElementById('pacote-nome').textContent = data.titulo;
+            })
+            .catch(error => {
+                console.error('Erro ao buscar detalhes do pacote:', error);
+                document.getElementById('pacote-nome').textContent = 'Erro ao carregar os detalhes do pacote.';
+            });
+    </script>
+</body>
+</html>

@@ -91,7 +91,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Rio de Janeiro</h5>
                         <p class="card-text">Visite uma das 7 maravilhas do mundo</p>
-                        <a href="#" class="btn btn-warning">Veja os preços</a>
+                        <a href="#" id="data-id" class="btn btn-warning" onclick="redirecionarParaDetalhes(2)">Veja os preços</a>
                     </div>
                 </div>
 
@@ -100,7 +100,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Maceió</h5>
                         <p class="card-text">Conheça o famoso Maragogi e suas belas praias</p>
-                        <a href="#" class="btn btn-warning">Veja os preços</a>
+                        <a href="#" id="data-id" class="btn btn-warning" onclick="redirecionarParaDetalhes(3)">Veja os preços</a>
                     </div>
                 </div>
 
@@ -109,7 +109,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Gramado</h5>
                         <p class="card-text">Sinta-se na Europa aqui no Brasil</p>
-                        <a href="#" class="btn btn-warning">Veja os preços</a>
+                        <a href="#" id="data-id" class="btn btn-warning" onclick="redirecionarParaDetalhes(4)">Veja os preços</a>
                     </div>
                 </div>
 
@@ -118,7 +118,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Porto Seguro</h5>
                         <p class="card-text">Aproveite as festas e a cultura nordestina</p>
-                        <a href="#" class="btn btn-warning">Veja os preços</a>
+                        <a href="#" id="data-id" class="btn btn-warning" onclick="redirecionarParaDetalhes(5)">Veja os preços</a>
                     </div>
                 </div>
             </div>
@@ -131,7 +131,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Tokyo</h5>
                         <p class="card-text">Desfrute de uma das culturas mais antigas que existem</p>
-                        <a href="#" class="btn btn-warning">Veja os preços</a>
+                        <a href="#" id="data-id" class="btn btn-warning" onclick="redirecionarParaDetalhes(6)">Veja os preços</a>
                     </div>
                 </div>
 
@@ -140,7 +140,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Irlanda</h5>
                         <p class="card-text">Aprecie vistas impagáveis e locais históricos imperdíveis</p>
-                        <a href="#" class="btn btn-warning">Veja os preços</a>
+                        <a href="#" id="data-id" class="btn btn-warning" onclick="redirecionarParaDetalhes(7)">Veja os preços</a>
                     </div>
                 </div>
 
@@ -149,7 +149,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Barcelona</h5>
                         <p class="card-text">Visite a capital catalã e conheça sua história</p>
-                        <a href="#" class="btn btn-warning">Veja os preços</a>
+                        <a href="#" id="data-id" class="btn btn-warning" onclick="redirecionarParaDetalhes(8)">Veja os preços</a>
                     </div>
                 </div>
 
@@ -158,7 +158,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Paris</h5>
                         <p class="card-text">Desfrute da capital romântica com nosso pacote especial</p>
-                        <a href="#" class="btn btn-warning">Veja os preços</a>
+                        <a href="#" id="data-id" class="btn btn-warning" onclick="redirecionarParaDetalhes(9)">Veja os preços</a>
                     </div>
                 </div>
             </div>
@@ -206,6 +206,12 @@
         function carregarPagina(id) {
             location.href = `./mainpage/page.html?id=${id}`;
         }
+
+        function redirecionarParaDetalhes(id) {
+    // Redireciona para a página detalhes.html com o ID como query string
+    location.href = `detalhes.html?id=${id}`;
+    }
+
     </script>
 </body>
 </html>
