@@ -51,9 +51,7 @@ document.getElementById('csv').addEventListener('input', function (e) {
 
 
 const finalizarCompra = async (id_pacote, id_usuario) => {
-    const container = document.querySelector('.confirmarCompra'); // Seleciona a linha onde os cards serão adicionados
 
-    container.innerHTML = '<p>Carregando pacotes...</p>';
 
     const response = await fetch(`http://localhost:3000/api/compra/preparar/${id_pacote}`, {
         method: "POST",
@@ -66,5 +64,44 @@ const finalizarCompra = async (id_pacote, id_usuario) => {
         return;
     }
     console.log("pagamento realizado com sucesso!")
+
+    const usuario = await response.json(); //aq para o usuario
+    const pacotes = await response.json(); //aq para o pacote //corrigir a logica dps
+
+    const popup = document.querySelector('.popup'); 
+    const overlay = document.querySelector('.overlay');
+    const openEditar = document.querySelectorAll('.edt_del');
+    
+    openEditar.forEach((botao) => { 
+        botao.addEventListener('click', ()=> {
+
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
+
+            document.querySelector('.containerEdt').innerHTML = `
+                <div class="confirmarCompra">
+                    <h2>Confirmar Compra:</h2>
+                    <p>Usuario: ${usuario.nome}</p>
+                    <hr>
+                    <p>Email: ${usuario.email}</p>
+                    <hr>
+                    <br>
+                    <h1> Deseja confirmar a compra do pacote: </h1>
+                    <p>Título: ${pacotes.titulo}</p>
+                    <hr>
+                    <p>Preço: ${pacotes.preco}
+                    <hr>
+                    <div class="botoes" style="display: flex;">
+                        <button class="sim" onclick="finalizarCompra(${id_pacote, id_usuario})"> Sim </button>
+                        <button class="não" onclick="cancelar()">Não</button>
+                    </div>    
+                </div>
+    `;
+    overlay.addEventListener('click', () => {
+        popup.style.display = 'none';
+        overlay.style.display = 'none';
+    });
+    console.log(response);
 }
 
+    );});}
