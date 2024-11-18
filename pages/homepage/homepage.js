@@ -1,6 +1,15 @@
-function adm(){
-    document.getElementById('adm').style = `display: block;`
-    return;
+const pegarImagens = async (id_pacote) =>{
+    const response = await fetch(`http://localhost:3000/api/pacote/${id_pacote}/imagens`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+    if (!response) {
+        console.error(`Pacote com ID ${id_pacote} não encontrado: ${response.statusText}`);
+        return;
+    }
+    console.log("imagens recuperadas")
 }
 
 console.log('teste')

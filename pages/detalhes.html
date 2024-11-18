@@ -121,7 +121,7 @@
                     <p id="pacote-descricao" class="lead">Descrição do pacote será carregada aqui.</p>
                     <p id="pacote-preco" class="h4 text-primary">R$ 0.00</p>
 
-                    <button class="btn btn-comprar" onclick="iniciarPagamento()">Comprar</button>
+                    <button class="btn btn-comprar" onclick="irParaPagamento()">Comprar</button>
 
                 </div>
             </div>
@@ -188,17 +188,20 @@
 
         }
 
-        const idUsuario = getUsuario();
-        const idPacote = getPacote(); 
-        if (idPacote && idUsuario) {
-            outraFuncao(idPacote, idUsuario); 
+        function irParaPagamento(){
+            const idUsuario = 10
+            const idPacote = getPacote(); 
+            if (idPacote && idUsuario) {
+                iniciarPagamento(idPacote, idUsuario); 
+            }
+            else{
+                console.log("erro ao encontrar as informações necessárias")
+                alert("Nenhum usuário encontrado, realize o login ou se cadastre primeiro")
+                location.href = './cadastro/index.html';
+            }
         }
-        else{
-            console.log("erro ao encontrar as informações necessárias")
-        }
-
         // function outraFuncao(id) {}
-        function iniciarPagamento(){
+        function iniciarPagamento(id_pacote, id_usuario){
             location.href = './pagamento/pagamento.html';
         }
 
