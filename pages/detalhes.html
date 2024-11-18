@@ -121,6 +121,7 @@
                     <p id="pacote-descricao" class="lead">Descrição do pacote será carregada aqui.</p>
                     <p id="pacote-preco" class="h4 text-primary">R$ 0.00</p>
 
+                    <div class="acharUsuario" style="display: none;">...</div>
                     <button class="btn btn-comprar" onclick="irParaPagamento()">Comprar</button>
 
                 </div>
@@ -179,7 +180,7 @@
 
             const usuarioId = id_usuario || new URLSearchParams(window.location.search).get('usuario');
 
-            if (!pacoteId) {
+            if (!usuarioId) {
                 console.error('ID do usuário não encontrado!');
                 return null;
             }
@@ -189,37 +190,20 @@
         }
 
         function irParaPagamento(){
-            const idUsuario = 10
+            const idUsuario = getUsuario(10);
             const idPacote = getPacote(); 
             if (idPacote && idUsuario) {
-                fetch('http://localhost:3000/api/pacote')
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Erro na requisição: ' + response.status);
-                        }
-                        return response.json();
-                    })
-                    .then(pacotes => {
-                        container.innerHTML = '';
-
-                        if (pacotes.length === 0) {
-                            container.innerHTML = '<p>Nenhum pacote disponível no momento.</p>';
-                            return;
-                        }
-                        pacotes.forEach(pacote => {
-                            iniciarPagamento(idPacote, idUsuario); 
-                });});
-                
-            }
-            else{
-                console.log("erro ao encontrar as informações necessárias")
-                alert("Nenhum usuário encontrado, realize o login ou se cadastre primeiro")
+                 iniciarPagamento(idPacote, idUsuario);
+            } else {
+                console.log("Erro ao encontrar as informações necessárias");
+                alert("Nenhum usuário encontrado, realize o login ou se cadastre primeiro");
                 location.href = './cadastro/index.html';
             }
         }
+                
         // function outraFuncao(id) {}
         function iniciarPagamento(id_pacote, id_usuario){
-            location.href = './pagamento/pagamento.html';
+            location.href = `./pagamento/pagamento.html?id=${id_pacote}&usuario=${id_usuario}`;;
         }
 
 

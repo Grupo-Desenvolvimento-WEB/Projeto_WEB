@@ -50,49 +50,48 @@ document.getElementById('csv').addEventListener('input', function (e) {
 });
 
 
-const finalizarCompra = async (id_pacote, id_usuario) => {
-
-
-    const response = await fetch(`http://localhost:3000/api/compra/preparar/${id_pacote}`, {
-        method: "POST",
+const confirmarCompra = async (id_pacote, id_usuario) => {
+    const response = await fetch(`http://localhost:3000/api/compra/preparar/${id_pacote}/10`, {
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
         }
     });
-    if (!response) {
+    if (!response.ok) {
         console.error(`Pacote com ID ${id_pacote} ou Usuario ${id_usuario} não encontrados: ${response.statusText}`);
         return;
     }
     console.log("pagamento realizado com sucesso!")
 
-    const usuario = await response.json(); //aq para o usuario
-    const pacotes = await response.json(); //aq para o pacote //corrigir a logica dps
+    const compra = await response.json(); //aq para o usuario
 
     const popup = document.querySelector('.popup'); 
     const overlay = document.querySelector('.overlay');
-    const openEditar = document.querySelectorAll('.edt_del');
+    const openpopup = document.getElementById('submit-btn');
     
-    openEditar.forEach((botao) => { 
-        botao.addEventListener('click', ()=> {
+    openpopup.addEventListener('click', ()=> {
 
+            console.log(compra)
             popup.style.display = 'block';
             overlay.style.display = 'block';
 
             document.querySelector('.containerEdt').innerHTML = `
                 <div class="confirmarCompra">
                     <h2>Confirmar Compra:</h2>
-                    <p>Usuario: ${usuario.nome}</p>
+                    <div id="usuarioId"> Id Usuário: ${id_usuario}</div><hr>
+                    <p>Usuario: ${compra.nome}</p>
                     <hr>
-                    <p>Email: ${usuario.email}</p>
+                    <p>Email: ${compra.email}</p>
                     <hr>
                     <br>
                     <h1> Deseja confirmar a compra do pacote: </h1>
-                    <p>Título: ${pacotes.titulo}</p>
+                    <div id="pacoteId"> Id Pacote: ${id_pacote}</div><hr>
+                    <p>Título: ${compra.titulo}</p>
                     <hr>
-                    <p>Preço: ${pacotes.preco}
+                    <p>Preço: ${compra.preco}
                     <hr>
                     <div class="botoes" style="display: flex;">
-                        <button class="sim" onclick="finalizarCompra(${id_pacote, id_usuario})"> Sim </button>
+                        <button class="sim" onclick="finalizarCompra(${id_pacote}, ${id_usuario})"> Sim </button>
                         <button class="não" onclick="cancelar()">Não</button>
                     </div>    
                 </div>
@@ -104,4 +103,38 @@ const finalizarCompra = async (id_pacote, id_usuario) => {
     console.log(response);
 }
 
-    );});}
+
+    );}
+
+const finalizarCompra = async (id_pacote, id_usuario) => {
+    var compra = {
+        pacote: id_pacote,
+        usuario: id_usuario,
+    };
+
+    console.log(JSON.stringify(compra));
+
+    try {
+        const response = await fetch(`http://localhost:3000/api/compra`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(compra),
+        });
+
+        const result = await response.json();
+        console.log(result);
+
+        if (response.ok) {
+            alert("Compra finalizada com sucesso!");
+            location.reload();
+        } else {
+            console.error("Erro ao finalizar a compra:", result.message || result);
+        }
+    } catch (error) {
+        console.error("Erro na requisição:", error);
+    }
+};
+    
+

@@ -9,8 +9,8 @@ const mysql = require('mysql2');
 
 const db = mysql.createConnection({
     host: "localhost",
-    user: "developer",
-    password: "1234567", //Alterar a senha conforme a máquina que está rodando o programa
+    user: "root",
+    password: "Root#963", //Alterar a senha conforme a máquina que está rodando o programa
     database: "Projeto_Web",
 
     typeCast: function (field, next) {
@@ -323,6 +323,42 @@ router.post('/api/compra', (req, res) => {
     });
 });
 
+router.post('/api/compra', (req, res) => {
+    const compra = req.body;
+    const query = 'INSERT INTO compra (fk_Usuario_Id_Usuario, fk_Pacote_Id_Pacote) VALUES (?, ?)';
+    db.query(query, [compra.id_usuario, compra.id_pacote], (err, results) => {
+        if (err) {
+            console.error('Erro ao inserir dados:', err);
+            res.status(500).send('Erro ao inserir dados');
+            return;
+        }
+        res.status(201).json({ message: 'Compra realizada com sucesso!', id: results.insertId });
+    });
+});
+
+//TABELA COMPRA - realizar compra
+router.get('/api/compra/preparar/:id_pacote/:id_usuario', (req, res) => {
+    const { id_pacote, id_usuario } = req.params;
+
+    const sqlPacote = 'SELECT titulo, preco FROM pacote WHERE id_pacote = ?';
+    const sqlUsuario = 'SELECT nome, email FROM usuario WHERE id_usuario = ?';
+
+    db.query(sqlPacote, [id_pacote], (errPacote, pacote) => {
+        if (errPacote || pacote.length === 0) {
+            console.error('Erro ao buscar pacote:', errPacote || 'Nenhum pacote encontrado');
+            return res.status(404).send('Pacote não encontrado');
+        }
+
+        db.query(sqlUsuario, [id_usuario], (errUsuario, usuario) => {
+            if (errUsuario || usuario.length === 0) {
+                console.error('Erro ao buscar usuário:', errUsuario || 'Nenhum usuário encontrado');
+                return res.status(404).send('Usuário não encontrado');
+            }
+
+            res.json({ pacote: pacote[0], usuario: usuario[0] });
+        });
+    });
+});
 
 app.use('/Images', express.static('imagens'));
 
