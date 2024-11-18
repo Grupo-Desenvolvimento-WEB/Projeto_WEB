@@ -51,8 +51,12 @@ document.getElementById('csv').addEventListener('input', function (e) {
 
 
 const finalizarCompra = async (id_pacote, id_usuario) => {
-    const response = await fetch(`http://localhost:3000/api/compra`, {
-        method: "GET",
+    const container = document.querySelector('.confirmarCompra'); // Seleciona a linha onde os cards serão adicionados
+
+    container.innerHTML = '<p>Carregando pacotes...</p>';
+
+    const response = await fetch(`http://localhost:3000/api/compra/preparar/${id_pacote}`, {
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
         }
@@ -61,5 +65,6 @@ const finalizarCompra = async (id_pacote, id_usuario) => {
         console.error(`Pacote com ID ${id_pacote} ou Usuario ${id_usuario} não encontrados: ${response.statusText}`);
         return;
     }
+    console.log("pagamento realizado com sucesso!")
 }
 
