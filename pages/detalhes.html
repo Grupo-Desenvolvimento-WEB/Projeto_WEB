@@ -175,9 +175,6 @@
         }
 
         function getUsuario(id_usuario) {
-            // const urlParams = new URLSearchParams(window.location.search);
-            // const userId = urlParams.get('user_id'); // Substitua 'user_id' pelo nome do parâmetro na URL
-
             const usuarioId = id_usuario || new URLSearchParams(window.location.search).get('usuario');
 
             if (!usuarioId) {

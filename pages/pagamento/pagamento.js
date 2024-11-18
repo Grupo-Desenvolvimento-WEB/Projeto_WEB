@@ -48,10 +48,32 @@ document.getElementById('id').addEventListener('input', function (e) {
 document.getElementById('csv').addEventListener('input', function (e) {
     this.value = this.value.replace(/\D/g, '');   // Input Card só aceita números
 });
+function getPacote(id_pacote) {
+    const pacoteId = id_pacote || new URLSearchParams(window.location.search).get('id');
+
+    if (!pacoteId) {
+        console.error('ID do pacote não encontrado!');
+        return null;
+    }
+    console.log('ID do Pacote:', pacoteId); 
+    return pacoteId; 
+}
+
+function getUsuario(id_usuario) {
+    const usuarioId = id_usuario || new URLSearchParams(window.location.search).get('usuario');
+
+    if (!usuarioId) {
+        console.error('ID do usuário não encontrado!');
+        return null;
+    }
+    console.log('ID do Usuario:', usuarioId); 
+    return usuarioId; 
+
+}
 
 
 const confirmarCompra = async (id_pacote, id_usuario) => {
-    const response = await fetch(`http://localhost:3000/api/compra/preparar/${id_pacote}/10`, {
+    const response = await fetch(`http://localhost:3000/api/compra/preparar/${getPacote()}/10`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -61,34 +83,33 @@ const confirmarCompra = async (id_pacote, id_usuario) => {
         console.error(`Pacote com ID ${id_pacote} ou Usuario ${id_usuario} não encontrados: ${response.statusText}`);
         return;
     }
-    console.log("pagamento realizado com sucesso!")
+    
 
-    const compra = await response.json(); //aq para o usuario
+    const compra = await response.json(); 
 
     const popup = document.querySelector('.popup'); 
     const overlay = document.querySelector('.overlay');
     const openpopup = document.getElementById('submit-btn');
     
     openpopup.addEventListener('click', ()=> {
-
             console.log(compra)
             popup.style.display = 'block';
             overlay.style.display = 'block';
 
-            document.querySelector('.containerEdt').innerHTML = `
+            document.querySelector('.popup').innerHTML = `
                 <div class="confirmarCompra">
                     <h2>Confirmar Compra:</h2>
-                    <div id="usuarioId"> Id Usuário: ${id_usuario}</div><hr>
-                    <p>Usuario: ${compra.nome}</p>
+                    <div id="usuarioId"> Id Usuário: ${compra.id_usuario}</div><hr>
+                    <div>Usuario: ${compra.nome}</div>
                     <hr>
-                    <p>Email: ${compra.email}</p>
+                    <div>Email: ${compra.email}</div>
                     <hr>
                     <br>
-                    <h1> Deseja confirmar a compra do pacote: </h1>
-                    <div id="pacoteId"> Id Pacote: ${id_pacote}</div><hr>
-                    <p>Título: ${compra.titulo}</p>
+                    <h4> Deseja confirmar a compra do pacote: </h4>
+                    <div id="pacoteId"> Id Pacote: ${compra.id_pacote}</div><hr>
+                    <div>Título: ${compra.titulo}</div>
                     <hr>
-                    <p>Preço: ${compra.preco}
+                    <div>Preço: ${compra.preco}</div>
                     <hr>
                     <div class="botoes" style="display: flex;">
                         <button class="sim" onclick="finalizarCompra(${id_pacote}, ${id_usuario})"> Sim </button>
@@ -96,11 +117,13 @@ const confirmarCompra = async (id_pacote, id_usuario) => {
                     </div>    
                 </div>
     `;
+
     overlay.addEventListener('click', () => {
         popup.style.display = 'none';
         overlay.style.display = 'none';
     });
     console.log(response);
+    console.log('ID do pacote:', id_pacote, 'ID do usuário:', id_usuario);
 }
 
 
@@ -128,6 +151,8 @@ const finalizarCompra = async (id_pacote, id_usuario) => {
 
         if (response.ok) {
             alert("Compra finalizada com sucesso!");
+            console.log("pagamento realizado com sucesso!")
+            //window.location.href = '../index.html'; 
             location.reload();
         } else {
             console.error("Erro ao finalizar a compra:", result.message || result);
@@ -136,5 +161,14 @@ const finalizarCompra = async (id_pacote, id_usuario) => {
         console.error("Erro na requisição:", error);
     }
 };
-    
+const cancelar = () => {
+    const popup = document.querySelector('.popup');
+    const overlay = document.querySelector('.overlay');
 
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+    
+};
+    
+getPacote()
+getUsuario()

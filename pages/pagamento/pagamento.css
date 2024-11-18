@@ -253,7 +253,7 @@ img[alt] {
 .popup {
   display: none; 
   position: fixed;
-  width: 65%;
+  width: 35%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -264,4 +264,22 @@ img[alt] {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   transition: opacity 0.3s ease;
+}
+.botoes button{
+  text-transform: uppercase;
+  border: none;
+  background-color:#858585;
+  color: white;
+  font-size: 15px;
+  line-height: 21px;
+  letter-spacing: 1.4px;
+  text-align: center;
+  margin-left: 10px;
+  cursor: pointer;
+  padding: 5px 15px 5px 15px;
+  border-radius: 8px;
+}
+.botoes{ 
+  align-items: center;
+  justify-content: space-around;
 }

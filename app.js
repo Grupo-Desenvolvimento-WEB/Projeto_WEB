@@ -416,8 +416,8 @@ router.post('/api/compra', (req, res) => {
 router.get('/api/compra/preparar/:id_pacote/:id_usuario', (req, res) => {
     const { id_pacote, id_usuario } = req.params;
 
-    const sqlPacote = 'SELECT titulo, preco FROM pacote WHERE id_pacote = ?';
-    const sqlUsuario = 'SELECT nome, email FROM usuario WHERE id_usuario = ?';
+    const sqlPacote = 'SELECT id_pacote, titulo, preco FROM pacote WHERE id_pacote = ?';
+    const sqlUsuario = 'SELECT id_usuario, nome, email FROM usuario WHERE id_usuario = ?';
 
     db.query(sqlPacote, [id_pacote], (errPacote, pacote) => {
         if (errPacote || pacote.length === 0) {
