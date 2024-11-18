@@ -134,7 +134,7 @@ const finalizarCompra = async (id_pacote, id_usuario) => {
         pacote: id_pacote,
         usuario: id_usuario,
     };
-
+    window.location.href = '../index.html';
     console.log(JSON.stringify(compra));
 
     try {
