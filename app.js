@@ -2,6 +2,7 @@ const express = require('express');
 
 const app = express();
 app.use(express.json());
+const bcrypt = require('bcryptjs');
 
 app.use(express.static('./pages'));
 
@@ -20,6 +21,18 @@ const db = mysql.createConnection({
         return next();
     },
 });
+
+const session = require('express-session');
+
+app.use(session({
+    secret: 'segredo',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: false, // True se usar HTTPS
+        httpOnly: true,
+    },
+}));
 
 // Conectar ao banco de dados
 db.connect((err) => {
@@ -55,28 +68,46 @@ app.post('/api/login', (req, res) => {
     db.query(sql, [email], async (err, results) => {
         if (err) {
             console.error('Erro ao buscar usuário:', err.message);
-            return res.status(500).send('Erro interno');
+            return res.status(500).json({ message: 'Erro ao consultar o banco de dados' });
         }
-        
+
+        console.log('Resultados da consulta:', results);
+
         if (results.length === 0) {
+            console.log('Email não encontrado:', email);
             return res.status(401).json({ message: 'Email não encontrado' });
         }
 
         const user = results[0];
-        const match = await bcrypt.compare(senha, user.senha);
+        console.log('Usuário encontrado:', user);
 
-        if (!match) {
-            return res.status(401).json({ message: 'Senha incorreta' });
+        if (!user.senha) {
+            console.error('Senha ausente no banco para o usuário:', email);
+            return res.status(500).json({ message: 'Erro interno: senha não encontrada' });
         }
 
-        // Criar sessão
-        req.session.userId = user.id;
-        req.session.username = user.nome;
+        try {
+            const match = await bcrypt.compare(senha, user.senha);
+            console.log('Senha comparada:', match);
 
-        res.status(200).json({ message: `Bem-vindo, ${user.nome}` });
+            if (!match) {
+                console.log('Senha incorreta para o usuário:', email);
+                return res.status(401).json({ message: 'Senha incorreta' });
+            }
+
+            // Criar sessão
+            req.session.userId = user.id;
+            req.session.username = user.nome;
+            console.log('Sessão criada para o usuário:', user.nome);
+
+            res.status(200).json({ message: `Bem-vindo, ${user.nome}` });
+        } catch (err) {
+            console.error('Erro ao comparar senha:', err.message);
+            res.status(500).json({ message: 'Erro interno ao verificar senha' });
+        }
     });
 });
-
+   
 // Middleware para proteger rotas
 function authMiddleware(req, res, next) {
     if (req.session.userId) {
@@ -116,7 +147,7 @@ router.get('/api/usuario', (req, res) => {
 router.post('/api/usuario', (req, res) => {
     const usuario = req.body;
     console.log(usuario);
-    const query = `insert into usuario (Nome, Email, Senha) values ('${usuario.nome}','${usuario.email}', MD5('${usuario.senha}'))`; // Ajuste a consulta SQL conforme o nome da sua tabela
+    const query = `insert into usuario (Nome, Email, Senha) values ('${usuario.nome}','${usuario.email}', '${usuario.senha}'`; // Ajuste a consulta SQL conforme o nome da sua tabela
     db.query(query, (err, results) => {
         if (err) {
             console.error('Erro ao buscar dados:', err);
@@ -264,6 +295,37 @@ router.post('/api/pacote', (req, res) => {
     });
 });
 
+//rota pra imagens
+router.get('/api/pacote/:id/imagens', (req, res) => {
+    const pacoteId = parseInt(req.params.id, 10);
+    if (isNaN(pacoteId)) {
+        return res.status(400).send('ID inválido');
+    }
+
+    const sql = 'SELECT imagem FROM pacote WHERE id_pacote = ?';
+
+    db.query(sql, [pacoteId], (err, results) => {
+        if (err) {
+            console.error('Erro ao buscar imagem:', err);
+            return res.status(500).send('Erro ao buscar imagens');
+        }
+
+        const imagens = results.map((row) => {
+            if (row.imagem && Buffer.isBuffer(row.imagem)) {
+                return `data:image/jpeg;base64,${Buffer.from(row.imagem).toString('base64')}`;
+            }
+            return null;
+        }).filter(Boolean); // Remove valores `null`
+
+        if (imagens.length === 0) {
+            return res.status(404).send('Nenhuma imagem encontrada para este pacote');
+        }
+
+        res.json(imagens); // Retorna uma lista de URLs/Base64
+    });
+});
+
+
 //TABELA PACOTE - UPDATE
 router.put('/api/pacote/:id_pacote', (req, res) => {
     const id = req.params.id_pacote; 
@@ -272,7 +334,7 @@ router.put('/api/pacote/:id_pacote', (req, res) => {
     if (!titulo || !imagem || !descricao || !preco) {
         return res.status(400).send('Todos os campos (titulo, imagem, descricao, preco) são obrigatórios.');
     }
-    var sql = 'UPDATE pacote SET titulo = ?, imagem = ?, descricao = ?, preco = ? WHERE id_pacote = ?';
+    var sql = 'UPDATE pacote SET titulo = ?, imagem =  ?, descricao = ?, preco = ? WHERE id_pacote = ?';
 
     db.query(sql, [titulo, imagem, descricao, preco, id], function (err, result) {
         if (err) {

@@ -111,7 +111,7 @@
             console.log("Enviando dados para cadastro:", data); // Depuração
 
             try {
-                const response = await fetch('http://localhost:3000/api/usuario', {
+                const response = await fetch('http://localhost:3000/api/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data),
@@ -157,7 +157,7 @@
 
                 if (response.ok) {
                     alert('Login realizado com sucesso!');
-                    window.location.href = '/dashboard'; // Ou a URL para o painel do usuário
+                    window.location.href = '../index.html'; // Ou a URL para o painel do usuário
                 } else {
                     alert(result.message || 'Falha no login. Verifique suas credenciais.');
                 }

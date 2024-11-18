@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Grupo-Desenvolvimento-WEB/Projeto_WEB#readme",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "connect-mysql-session": "^0.1.1",
     "express": "^4.21.1",
     "express-mysql-session": "^3.0.3",
