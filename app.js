@@ -240,45 +240,6 @@ router.get('/api/pacote', (req, res) => {
     });
 });
 
-const multer = require("multer");
-const path = require("path");
-
-// Configura onde e como os arquivos serão salvos
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "pastavazia/"); // Pasta onde os arquivos serão salvos
-    },
-    filename: (req, file, cb) => {
-        cb(null, `${Date.now()}-${file.originalname}`); // Nome único para cada arquivo
-    },
-});
-
-const upload = multer({ storage });
-
-module.exports = upload;
-
-
-const upload = require("./multer-config"); // Arquivo onde configuramos o multer
-
-router.post("/api/pacote", upload.single("imagem"), (req, res) => {
-    const { titulo, descricao, preco } = req.body;
-    const imagemPath = req.file.path; // Caminho real onde a imagem foi salva
-
-    // Aqui você salva os dados no banco de dados
-    const sql = "INSERT INTO pacotes (titulo, descricao, preco, imagem) VALUES (?, ?, ?, ?)";
-    db.query(sql, [titulo, descricao, preco, imagemPath], (err, result) => {
-        if (err) {
-            console.error("Erro ao salvar pacote:", err);
-            return res.status(500).send("Erro ao salvar pacote");
-        }
-
-        res.status(201).send("Pacote salvo com sucesso");
-    });
-});
-
-app.use("/pastavazia", express.static("uploads"));
-
-
 
 
 //endpoint para capturar um pacote por id
