@@ -64,10 +64,10 @@
                     <img src="Images/do-utilizador.png" alt="mdo" width="32" height="32" class="rounded-circle">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end text-small" aria-labelledby="userDropdown">
-                    <li><a class="dropdown-item" href="./acesso_admin/listausuarios.html">Perfil</a></li>
+                    <li><a class="dropdown-item" href="./cadastro/index.html">Perfil</a></li>
                     <li><a class="dropdown-item" href="./acesso_admin/gerenciarpacotes.html">Configurações</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Deslogar</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="">Deslogar</a></li>
                 </ul>
             </div>
         </div>
@@ -149,7 +149,7 @@
       <ul class="nav justify-content-center border-bottom pb-3 mb-3">
         <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
         <li class="nav-item"><a href="./acesso_admin/listausuarios.html" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-        <li class="nav-item"><a href="./cadastro/index.html" class="nav-link px-2 text-body-secondary">About</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
       </ul>
       <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
     </footer>
@@ -159,18 +159,18 @@
     <script src="./homepage/homepage.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-
         //fazendo busca das imagens
-        fetch('http://localhost:3000/api/pacote/1/imagens')
-        .then(response => response.json())
-        .then(imagens => {
-            imagens.forEach(imagem => {
-                const img = document.createElement('img');
-                img.src = imagem;
-                document.body.appendChild(img);
-            });
-        })
-        .catch(err => console.error(err));
+        // fetch('http://localhost:3000/api/pacote/1/imagens')
+        // .then(response => response.json())
+        // .then(imagens => {
+        //     imagens.forEach(imagem => {
+        //         const img = document.createElement('img');
+        //         img.src = imagem;
+        //         document.body.appendChild(img);
+        //     });
+        // })
+        // .catch(err => console.error(err));
+        
     </script>
 </body>
 </html>

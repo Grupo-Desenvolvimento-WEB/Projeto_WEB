@@ -108,13 +108,27 @@ app.post('/api/login', (req, res) => {
     });
 });
    
-// Middleware para proteger rotas
-function authMiddleware(req, res, next) {
-    if (req.session.userId) {
-        return next();
+// // Middleware para proteger rotas
+// function authMiddleware(req, res, next) {
+//     if (req.session.userId) {
+//         return next();
+//     }
+//     res.status(401).send('Não autorizado');
+// }
+
+// procura se existe um usuario logado
+app.get('/api/me', (req, res) => {
+    if (!req.session.userId) {
+        return res.status(401).json({ message: 'Usuário não autenticado' });
     }
-    res.status(401).send('Não autorizado');
-}
+
+    res.status(200).json({
+        userId: req.session.userId,
+        username: req.session.username
+    });
+});
+
+
 
 // Logout
 app.post('/api/logout', (req, res) => {
@@ -131,7 +145,7 @@ const router = express.Router();
 
 //TABELA USUARIO _ GET
 router.get('/api/usuario', (req, res) => {
-    const query = 'SELECT * FROM usuario'; 
+    const query = 'SELECT id_usuario, nome, email FROM usuario'; 
     db.query(query, (err, results) => {
         if (err) {
             console.error('Erro ao buscar dados:', err);

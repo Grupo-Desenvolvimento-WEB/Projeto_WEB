@@ -3,19 +3,19 @@ CREATE DATABASE Projeto_Web;
 USE Projeto_Web;
 
 CREATE TABLE Usuario (
-    Id_Usuario  INT PRIMARY KEY AUTO_INCREMENT ,
+    id_usuario  INT PRIMARY KEY AUTO_INCREMENT ,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
     senha VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE Pacote (
-    Id_Pacote INT PRIMARY KEY AUTO_INCREMENT,
-    Titulo VARCHAR(100) NOT NULL,
-    Imagem BLOB,
-    Descricao VARCHAR(500),
-    Preco DECIMAL(10 ,2) NOT NULL,
-    Num_Compras INT DEFAULT 0
+    id_pacote INT PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(100) NOT NULL,
+    imagem BLOB,
+    descricao VARCHAR(500),
+    preco DECIMAL(10 ,2) NOT NULL,
+    num_compras INT DEFAULT 0
 );
 
 CREATE TABLE Compra (
@@ -87,6 +87,19 @@ DELIMITER ;
  ('Londres', 'Visitas ao Big Ben e ao Palácio de Buckingham.', 1900.00),
  ('Cairo', 'Tour pelas Pirâmides de Gizé e Museu Egípcio.', 1400.00),
  ('Bangkok', 'Experiência cultural com templos e mercados flutuantes.', 1300.00);
+ 
+ INSERT INTO Usuario (nome, email, senha) VALUES
+('Amanda Silva', 'amanda.silva@example.com', '1234'),
+('Carlos Souza', 'carlos.souza@example.com', 'abcd'),
+('Mariana Costa', 'mariana.costa@example.com', 'senha123'),
+('João Pereira', 'joao.pereira@example.com', 'joao2023'),
+('Fernanda Oliveira', 'fernanda.oliveira@example.com', 'fernanda@123'),
+('Lucas Santos', 'lucas.santos@example.com', 'lucas2023'),
+('Beatriz Almeida', 'beatriz.almeida@example.com', 'beatriz#321'),
+('Rafael Lima', 'rafael.lima@example.com', 'rafael!456'),
+('Juliana Mendes', 'juliana.mendes@example.com', 'juliana#2023'),
+('Eduardo Ramos', 'eduardo.ramos@example.com', 'eduardo@789');
+
  
 SELECT * FROM USUARIO;
 SELECT * FROM PACOTE;

@@ -12,6 +12,28 @@
 //     console.log("imagens recuperadas")
 // }
 
+async function verificarSessao() {
+    try {
+        const response = await fetch('http://localhost:3000/api/me', {
+            method: 'GET',
+            credentials: 'include'
+        });
+
+        if (!response.ok) {
+            console.log('erro na autentificação')
+            return;
+        }
+
+        const data = await response.json();
+        alert(data.message);
+        //window.location.href = '../index.html';
+        
+    } catch (err) {
+        console.error('Erro ao verificar sessão:', err);
+    }
+}
+
+
 console.log('teste')
 
 document.addEventListener('DOMContentLoaded', () => {
