@@ -192,7 +192,24 @@
             const idUsuario = 10
             const idPacote = getPacote(); 
             if (idPacote && idUsuario) {
-                iniciarPagamento(idPacote, idUsuario); 
+                fetch('http://localhost:3000/api/pacote')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Erro na requisição: ' + response.status);
+                        }
+                        return response.json();
+                    })
+                    .then(pacotes => {
+                        container.innerHTML = '';
+
+                        if (pacotes.length === 0) {
+                            container.innerHTML = '<p>Nenhum pacote disponível no momento.</p>';
+                            return;
+                        }
+                        pacotes.forEach(pacote => {
+                            iniciarPagamento(idPacote, idUsuario); 
+                });});
+                
             }
             else{
                 console.log("erro ao encontrar as informações necessárias")
