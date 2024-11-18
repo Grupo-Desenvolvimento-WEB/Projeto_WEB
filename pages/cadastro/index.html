@@ -134,6 +134,7 @@
             const email = document.getElementById('login-email');
             const senha = document.getElementById('login-senha');
 
+            // Valida os campos de login
             if (!validarCampos([email, senha])) return;
 
             const data = { email: email.value, senha: senha.value };
@@ -147,15 +148,20 @@
                     body: JSON.stringify(data),
                 });
 
+                // Verifica se a resposta foi bem-sucedida
+                if (!response.ok) {
+                    const result = await response.json();
+                    console.error("Erro no servidor:", result); // Depuração
+                    alert(result.message || 'Falha no login. Verifique suas credenciais.');
+                    return;
+                }
+
                 const result = await response.json();
                 console.log("Resposta do servidor:", result); // Depuração
 
-                if (response.ok) {
-                    alert('Login realizado com sucesso!');
-                    window.location.href = '/dashboard';
-                } else {
-                    alert(result.message || 'Falha no login. Verifique suas credenciais.');
-                }
+                alert('Login realizado com sucesso!');
+                window.location.href = '/dashboard'; // Ou a URL para o painel do usuário
+
             } catch (error) {
                 console.error('Erro ao fazer login:', error);
                 alert('Erro na comunicação com o servidor. Verifique sua conexão.');
