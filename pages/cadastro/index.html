@@ -65,8 +65,13 @@
     <script>
         const container = document.getElementById('container');
 
-        // Alterna entre o modo de login e cadastro
+        // Função para alternar entre o modo de login e cadastro
         function alternarModo(modo) {
+            if (!container) {
+                console.error('Contêiner não encontrado!');
+                return;
+            }
+
             if (modo === 'login') {
                 container.classList.remove('right-panel-active');
             } else if (modo === 'cadastro') {
