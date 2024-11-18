@@ -30,18 +30,6 @@ db.connect((err) => {
     console.log('Conexão com o banco de dados MySQL estabelecida com sucesso!');
 });
 
-const sessionStore = new MySQLStore({}, db);
-
-app.use(session({
-    key: 'user_session',
-    secret: 'segredo_super_secreto',
-    store: sessionStore,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        maxAge: 1000 * 60 * 60 // 1 hora
-    }
-}));
 
 // Endpoint para registrar novo usuário (com bcrypt)
 app.post('/api/register', async (req, res) => {
